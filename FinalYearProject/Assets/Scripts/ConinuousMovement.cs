@@ -61,9 +61,7 @@ public class ConinuousMovement : MonoBehaviour
         //tells if grounded
         Vector2 rayStart = transform.TransformPoint(Character.center);
         float rayLength = Character.center.y + 0.01f;
-
-        bool hasHit = Physics.SphereCast(rayStart, Character.radius, Vector3.down, out RaycastHit hitInfo, groundLayer);
-
+        bool hasHit = Physics.SphereCast(rayStart, Character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
         return hasHit;
     }
 
