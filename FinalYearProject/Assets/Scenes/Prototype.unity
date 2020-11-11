@@ -318,10 +318,12 @@ MonoBehaviour:
       m_Calls: []
   m_SelectActionTrigger: 1
   m_HideControllerOnSelect: 1
-  m_PlayAudioClipOnSelectEnter: 0
-  m_AudioClipForOnSelectEnter: {fileID: 0}
-  m_PlayAudioClipOnSelectExit: 0
-  m_AudioClipForOnSelectExit: {fileID: 0}
+  m_PlayAudioClipOnSelectEnter: 1
+  m_AudioClipForOnSelectEnter: {fileID: 8300000, guid: 631b76ab708641149943d8a42d886f1f,
+    type: 3}
+  m_PlayAudioClipOnSelectExit: 1
+  m_AudioClipForOnSelectExit: {fileID: 8300000, guid: 334fcc4de18a7614d842f9e205e05251,
+    type: 3}
   m_PlayAudioClipOnHoverEnter: 0
   m_AudioClipForOnHoverEnter: {fileID: 0}
   m_PlayAudioClipOnHoverExit: 0
@@ -2234,10 +2236,12 @@ MonoBehaviour:
       m_Calls: []
   m_SelectActionTrigger: 1
   m_HideControllerOnSelect: 1
-  m_PlayAudioClipOnSelectEnter: 0
-  m_AudioClipForOnSelectEnter: {fileID: 0}
-  m_PlayAudioClipOnSelectExit: 0
-  m_AudioClipForOnSelectExit: {fileID: 0}
+  m_PlayAudioClipOnSelectEnter: 1
+  m_AudioClipForOnSelectEnter: {fileID: 8300000, guid: 631b76ab708641149943d8a42d886f1f,
+    type: 3}
+  m_PlayAudioClipOnSelectExit: 1
+  m_AudioClipForOnSelectExit: {fileID: 8300000, guid: 334fcc4de18a7614d842f9e205e05251,
+    type: 3}
   m_PlayAudioClipOnHoverEnter: 0
   m_AudioClipForOnHoverEnter: {fileID: 0}
   m_PlayAudioClipOnHoverExit: 0
