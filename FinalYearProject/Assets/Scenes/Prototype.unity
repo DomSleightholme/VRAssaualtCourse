@@ -523,8 +523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motionTarget: {fileID: 1387139999}
   effectColor: {r: 0, g: 0, b: 0, a: 1}
-  effectCoverage: 0.7
-  effectFeather: 0.5
+  effectCoverage: 1
+  effectFeather: 0.27
   effectSkybox: {fileID: 0}
   applyColorToBackground: 0
   useAngularVelocity: 1
@@ -2465,6 +2465,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2172983030934661068, guid: 48b5de79851c13641a23fd2a5d075dc3,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172983030934661068, guid: 48b5de79851c13641a23fd2a5d075dc3,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b5de79851c13641a23fd2a5d075dc3, type: 3}
 --- !u!23 &1491840628215557508
@@ -2574,6 +2584,7 @@ GameObject:
   - component: {fileID: 9078424974969992441}
   - component: {fileID: 5273828514864437471}
   - component: {fileID: 1491840628215557508}
+  - component: {fileID: 1922243094612179976}
   m_Layer: 0
   m_Name: Cushion 2
   m_TagString: Untagged
@@ -2581,6 +2592,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1922243094612179976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922243094612179975}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000005, y: 2.0000005, z: 2}
+  m_Center: {x: 0, y: -0.0000038146973, z: 0.0000009536743}
 --- !u!1 &3187646007651961465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,11 +2636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f677b32df61b9f488b65b76ca1f2691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 0
+  RotationSpeed: 78
   minSpeed: 0
   maxSpeed: 200
-  canIncreaseSpeed: 0
   increaseMulitpler: 1
+  canIncreaseSpeed: 0
 --- !u!4 &3297248927579225213
 Transform:
   m_ObjectHideFlags: 0
@@ -2776,6 +2800,7 @@ GameObject:
   - component: {fileID: 9042081289950807015}
   - component: {fileID: 6878880851901702421}
   - component: {fileID: 5626275451674088202}
+  - component: {fileID: 5401100897525649599}
   m_Layer: 0
   m_Name: Cushion 1
   m_TagString: Untagged
@@ -2783,6 +2808,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &5401100897525649599
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5401100897525649598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000005, y: 2.0000005, z: 2}
+  m_Center: {x: 0, y: -0.0000019073486, z: 0.0000009536743}
 --- !u!23 &5626275451674088202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3004,8 +3042,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5945207324641337421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.92611, y: 0.5935967, z: -8.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 16.92611, y: -1.03, z: -8.89}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 1753564772281226246}
   - {fileID: 8873929878052275997}
