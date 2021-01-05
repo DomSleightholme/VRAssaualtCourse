@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelTimer : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class LevelTimer : MonoBehaviour
     public bool timeRunning = false;
 
     [Header("UI")]
-    public Text minutesUI;
-    public Text secondsUI;
+    public TMP_Text minutesUI;
+    public TMP_Text secondsUI;
     string minUI;
     string secUI;
 
