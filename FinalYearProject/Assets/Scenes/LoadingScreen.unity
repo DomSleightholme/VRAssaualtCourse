@@ -1186,9 +1186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f36596157fa1724ba1ad6a7d23ee6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneTrans: {fileID: 0}
+  SceneTrans: {fileID: 104866889}
   Level: Prototype
-  Timer: 10
+  Timer: 5
 --- !u!1 &1614023067
 GameObject:
   m_ObjectHideFlags: 0
