@@ -11,17 +11,6 @@ Using Photon Unity Networking (PUN) version two, a Unity package for multiplayer
 
 As multiplayer can be a complex thing to achieve, I will be working on have a max room size of 4 with plans to increase the size depending on progress on the game and networking in the game. Stay tuned for regular commits during development of this project :)
 
-## Project Specification :clipboard::
-I will be updating this list regualr to show what I have been up to during development and what tasks I will be completing next.
-- [x] Set up Project and Resources for Development
-- [x] Establish Basic Camera Control
-- [x] Written Continous Movement Script with Camera turning using the Oculus Hand Controllers
-- [x] Developed basic Grabbing Mechanics using Unity's embedded Scripts
-- [ ] Improve Movement for fully immersive experience using User Feedback
-- [ ] Develop Mechanics to reduce Risk of Motion Sickness
-- [ ] Improve Grabbing Objects Mechanics
-- [ ] Control UI using Oculus Controllers
-
 ## Programs and Equipment :video_game::
 * Unity 2019.3.8f1
 	* Oculus Desktop
