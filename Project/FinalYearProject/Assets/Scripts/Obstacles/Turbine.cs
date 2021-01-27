@@ -106,12 +106,8 @@ public class Turbine : MonoBehaviour
 
     void DetectDistance()
     {
-        float dist = Vector3.Distance(Player.position, transform.position);
-        int distance = Mathf.RoundToInt(dist);
+        Vector3 knock = Player.position - transform.position;
 
-        int speed = Force / distance;
-
-        Debug.LogError(speed);
-        movement.Character.Move(new Vector3(speed, 0, 0) * Time.deltaTime);
+        movement.Character.SimpleMove(knock * Force * Time.deltaTime);
     }
 }
