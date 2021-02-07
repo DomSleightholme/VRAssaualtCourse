@@ -105,7 +105,6 @@ public class ConinuousMovement : MonoBehaviour
         }
 
     }
-
     void checkSpeed()
     {
         if(inputAxis.x != checkMovement.x && inputAxis.y != checkMovement.y)
@@ -117,7 +116,6 @@ public class ConinuousMovement : MonoBehaviour
             isSprinting = false;
         }
     }
-
     bool CheckIfGrounded()
     {
         //tells if grounded
@@ -126,12 +124,19 @@ public class ConinuousMovement : MonoBehaviour
         bool hasHit = Physics.SphereCast(rayStart, Character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
         return hasHit;
     }
-
     void CapsuleFollowHeadset()
     {
         Character.height = Rig.cameraInRigSpaceHeight + additionalHeight;
         Vector3 capsuleCenter = transform.InverseTransformPoint(Rig.cameraGameObject.transform.position);
         Character.center = new Vector3(capsuleCenter.x, Character.height / 2 + Character.skinWidth, capsuleCenter.z);
+    }   
+    public void Collision(Vector3 velocity, float force)
+    {
+        Debug.Log(velocity);
+
+        velocity.y = 0;
+
+        Character.Move(-velocity.normalized * force * Time.deltaTime);
     }
 
     void AudioPlayer()
@@ -141,12 +146,10 @@ public class ConinuousMovement : MonoBehaviour
             RunningAudio.Play();           
         }
     }
-
     private void OnEnable()
     {
         controls.Enable();
     }
-
     private void OnDisable()
     {
         controls.Disable();

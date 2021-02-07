@@ -7,14 +7,12 @@ public class ObstaclesCollision : MonoBehaviour
     private Rigidbody Obstacle;
     public float velocity;
     public float miniumForceImpact;
-
-    private CollisionDectection collisionDectection;
+    ConinuousMovement movement;
     private void Start()
     {
-        Obstacle = GetComponentInParent<Rigidbody>();
-        collisionDectection = FindObjectOfType<CollisionDectection>();
+        Obstacle = GetComponent<Rigidbody>();
+        movement = FindObjectOfType<ConinuousMovement>();
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,10 +22,14 @@ public class ObstaclesCollision : MonoBehaviour
             
             if(velocity > miniumForceImpact)
             {
-                collisionDectection.isHit = true;
-                Debug.LogError(velocity);
+                Debug.Log(transform.parent.name + ": " + velocity);
 
-                collision.gameObject.SendMessage("Collision", velocity);
+                Vector3 direction = transform.position - collision.transform.position;
+                direction.Normalize();
+
+                float collisionForce = collision.impulse.magnitude / Time.deltaTime;
+
+                movement.Collision(direction, collisionForce);
             }
 
         }

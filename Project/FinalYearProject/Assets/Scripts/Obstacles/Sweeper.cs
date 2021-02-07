@@ -13,6 +13,13 @@ public class Sweeper : MonoBehaviour
     [Header("Increase Speed")]
     public float increaseMulitpler;
     public bool canIncreaseSpeed;
+    private Rigidbody RB;
+    ConinuousMovement movement;
+    private void Start()
+    {
+        RB = GetComponent<Rigidbody>();
+        movement = FindObjectOfType<ConinuousMovement>();
+    }
 
     private void Update()
     {
@@ -26,7 +33,10 @@ public class Sweeper : MonoBehaviour
 
     void Rotate()
     {
-        transform.Rotate(0,0, RotationSpeed * Time.deltaTime);
+        // transform.Rotate(0,0, RotationSpeed * Time.deltaTime);
+
+        Quaternion deltaRotation = Quaternion.Euler(0, 0, RotationSpeed * Time.deltaTime);
+        RB.MoveRotation(RB.rotation * deltaRotation);
     }
 
     void IncreaseSpeed()
@@ -35,5 +45,17 @@ public class Sweeper : MonoBehaviour
         {
             RotationSpeed += increaseMulitpler * Time.deltaTime;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+
+        Vector3 direction = transform.position - collision.transform.position;
+        direction.Normalize();
+
+        float collisionForce = collision.impulse.magnitude / Time.deltaTime;
+
+        movement.Collision(direction, collisionForce);
     }
 }
