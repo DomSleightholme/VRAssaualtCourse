@@ -28,7 +28,6 @@ public class ArmSwingingMovement : MonoBehaviour
     bool isSprinting;
 
     //Classes
-    private ConinuousMovement movement;
     private GameManager gameManager;
     public VRControllers playerInput;
 
@@ -41,7 +40,6 @@ public class ArmSwingingMovement : MonoBehaviour
 
     private void Start()
     {
-        movement = GetComponent<ConinuousMovement>();
         gameManager = FindObjectOfType<GameManager>();
 
         //Set original Previous frame positions at start up
@@ -52,7 +50,7 @@ public class ArmSwingingMovement : MonoBehaviour
 
     public void Update()
     {
-        Sprint();
+
        if(gameManager.VRInput == true)
         {
             //Get current positions of hands
@@ -70,23 +68,7 @@ public class ArmSwingingMovement : MonoBehaviour
             HandSpeed = ((leftHandDistanceMoved - playerDistanceMove) + (rightHandDistanceMoved - playerDistanceMove));
             HandSpeed = Mathf.Round(HandSpeed * 100f) / 100f;
 
-            if (HandSpeed > 0.04 || HandSpeed < -0.02 && movement.isSprinting == true)
-            {
-                if (movement.Speed + Multipler < 20)
-                {
-                    movement.Speed = movement.Speed += Multipler;
-
-                    if (movement.isSprinting == true)
-                    {
-                        movement.RunningAudio.pitch = movement.NewPitch;
-                    }
-                }
-            }
-            if (HandSpeed == 0)
-            {
-                movement.Speed = movement.OrignalSpeed;
-                movement.RunningAudio.pitch = movement.OriginalPitch;
-            }
+           
 
             //Set pervious positions of hands for the next frame
             PositionPreviousFrameLeftHand = PositionThisFrameLeftHand;
@@ -96,29 +78,7 @@ public class ArmSwingingMovement : MonoBehaviour
         }
     }
 
-    void Sprint()
-    {
-       if(isSprinting == true)
-        {
-            if (gameManager.OtherInput == true)
-            {
-                if (movement.Speed + Multipler < 20)
-                {
-                    movement.Speed = movement.Speed += Multipler;
 
-                    if (movement.isSprinting == true)
-                    {
-                        movement.RunningAudio.pitch = movement.NewPitch;
-                    }
-                }
-            }
-        }
-        else
-        {
-            movement.Speed = movement.OrignalSpeed;
-            movement.RunningAudio.pitch = movement.OriginalPitch;
-        }
-    }
 
     private void OnEnable()
     {

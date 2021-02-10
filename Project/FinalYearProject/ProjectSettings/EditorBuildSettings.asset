@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 2c5d025d2f17b394497ec4ef4f5c6d89
-  - enabled: 1
-    path: Assets/Scenes/Prototype.unity
-    guid: 88e063bc4d817ed499583505cd4b7f2e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/TestingLevel.unity
     guid: 27414b9f0823e0347baaa8bcca0d2327
@@ -28,4 +28,6 @@ EditorBuildSettings:
     com.unity.input.settings: {fileID: 11400000, guid: 2fb978bef12aafa41811446ca6ae3e0e,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 74663164b882a5e43bcb5ebc3d715674,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: d2d9a54090c0c6b4a9dfb9ff811664c4,
       type: 2}

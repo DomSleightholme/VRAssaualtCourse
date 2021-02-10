@@ -7,11 +7,9 @@ public class ObstaclesCollision : MonoBehaviour
     private Rigidbody Obstacle;
     public float velocity;
     public float miniumForceImpact;
-    ConinuousMovement movement;
     private void Start()
     {
         Obstacle = GetComponent<Rigidbody>();
-        movement = FindObjectOfType<ConinuousMovement>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,8 +26,6 @@ public class ObstaclesCollision : MonoBehaviour
                 direction.Normalize();
 
                 float collisionForce = collision.impulse.magnitude / Time.deltaTime;
-
-                movement.Collision(direction, collisionForce);
             }
 
         }

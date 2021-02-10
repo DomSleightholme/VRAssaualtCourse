@@ -25,7 +25,6 @@ public class Turbine : MonoBehaviour
     public Transform Player;
 
     [Header("Private Variables")]
-    private ConinuousMovement movement;
     private Vector3 forward;
     private Vector3 position1;
     private Vector3 position2;
@@ -34,7 +33,7 @@ public class Turbine : MonoBehaviour
 
     private void Start()
     {
-        movement = FindObjectOfType<ConinuousMovement>();
+        
     }
     public void FixedUpdate()
     {
@@ -108,6 +107,5 @@ public class Turbine : MonoBehaviour
     {
         Vector3 knock = Player.position - transform.position;
 
-        movement.Character.SimpleMove(knock * Force * Time.deltaTime);
     }
 }

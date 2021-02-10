@@ -144,7 +144,7 @@
                 "value": "{\"m_Value\":{\"fileID\":2100000,\"guid\":\"0fbe50950a2863d4ba8f5dc345fad8a7\",\"type\":2}}"
             },
             {
-                "type": "UnityEditor.StaticEditorFlags, UnityEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "type": "UnityEditor.StaticEditorFlags, UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "mesh.defaultStaticEditorFlags",
                 "value": "{\"m_Value\":0}"
             },

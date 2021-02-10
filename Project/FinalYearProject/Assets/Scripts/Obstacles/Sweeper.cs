@@ -14,11 +14,9 @@ public class Sweeper : MonoBehaviour
     public float increaseMulitpler;
     public bool canIncreaseSpeed;
     private Rigidbody RB;
-    ConinuousMovement movement;
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
-        movement = FindObjectOfType<ConinuousMovement>();
     }
 
     private void Update()
@@ -55,7 +53,5 @@ public class Sweeper : MonoBehaviour
         direction.Normalize();
 
         float collisionForce = collision.impulse.magnitude / Time.deltaTime;
-
-        movement.Collision(direction, collisionForce);
     }
 }

@@ -7,7 +7,6 @@ public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
     public GameObject Menu;
-    public GameObject test;
     private VRControllers inputActions;
 
     void Awake()

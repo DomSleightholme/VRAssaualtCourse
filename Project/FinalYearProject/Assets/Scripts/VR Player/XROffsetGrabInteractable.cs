@@ -23,20 +23,6 @@ public class XROffsetGrabInteractable : XRGrabInteractable
         initialAttachLocalRot = attachTransform.localRotation;
     }
 
-    protected override void OnSelectEnter(XRBaseInteractor interactor)
-    {
-        //Keeps GameObjects Transform and Rotation but still Interactable
-        if(interactor is XRDirectInteractor)
-        {
-            attachTransform.position = interactor.transform.position;
-            attachTransform.rotation = interactor.transform.rotation;
-        }
-        else
-        {
-            attachTransform.localPosition = initialAttachLocalPos;
-            attachTransform.localRotation = initialAttachLocalRot;
-        }
-
-        base.OnSelectEnter(interactor);
-    }
+   
+    
 }
