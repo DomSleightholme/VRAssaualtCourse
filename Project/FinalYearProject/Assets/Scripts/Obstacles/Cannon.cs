@@ -6,12 +6,23 @@ public class Cannon : MonoBehaviour
 {
     [Header("Variables")]
     public float FireDelay;
+    public float BulletForce;
+    public bool isAutomatic;
     [Range(-180f, 0f)]
     public float RotationRange;
 
     [Header("Transforms")]
-    public GameObject Bullet;
+    public Transform Barrel;
+    public Rigidbody Projectile;
     public GameObject CannonObject;
+
+    private void Start()
+    {
+        if (isAutomatic)
+        {
+            InvokeRepeating("FireCannon", 1.0f, FireDelay);
+        }
+    }
 
     public void Update()
     {
@@ -21,5 +32,10 @@ public class Cannon : MonoBehaviour
     public void FireCannon()
     {
         Debug.Log("Cannon fire");
+
+        Rigidbody clone;
+        clone = Instantiate(Projectile, Barrel.position, Barrel.rotation);
+
+        clone.velocity = transform.TransformDirection(-Vector3.left * BulletForce);
     }
 }

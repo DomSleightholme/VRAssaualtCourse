@@ -7,22 +7,20 @@ public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
     public GameObject Menu;
-    private VRControllers inputActions;
+    public float PauseCountdownTimer;
+    public float tst = 0;
+    private XRIDefaultInputActions inputActions;
 
     void Awake()
     {
-        inputActions = new VRControllers();
+        inputActions = new XRIDefaultInputActions();
+        inputActions.XRILeftHand.Pause.performed += ctx => InputCheck();
+       
         Resume();
     }
 
-    private void Start()
-    {
-        //using Unitys new input system to track pause being used on keyboard or gamepad
-        inputActions.Player.Pause.performed += _ => InputCheck();
-    }
-
     public void InputCheck()
-    {    
+    {
         //If paused when called, the game will resume but if the game is resumed when called, the game pauses
         if (isPaused == true)
         {
@@ -31,7 +29,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             Paused();
-        }        
+        }
     }
 
     void Paused()
@@ -47,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         Menu.SetActive(false);
+        Time.timeScale = 1;
 
         var Countdown = FindObjectOfType<Countdown>();
         Countdown.StartCountdown();

@@ -10,15 +10,29 @@ public class VRPlayer : MonoBehaviour
     public Transform Cam;
 
     [Header("Sprinting")]
-    public float SprintValue;
-    public float OrignalValue;
+    public GameObject SweatEffect;
+    public GameObject SpeedEffect;
+    private float SprintValue;
+    private float OrignalValue;
+    public bool canSprint;
+    public float Cooldown;
+    public float SpintingTime;
     public bool isSprinting;
 
     [Header("Jumping")]
-    public InputActionProperty jump;
+    public float JumpForce;
+    public bool isGrounded;
+    private XRIDefaultInputActions inputActions;
 
     private XRRig Rig;
     private Rigidbody RB;
+
+    private void Awake()
+    {
+        inputActions = new XRIDefaultInputActions();
+        inputActions.XRIRightHand.Jump.performed += ctx => Jump();
+        canSprint = true;
+    }
 
     private void Start()
     {
@@ -34,16 +48,15 @@ public class VRPlayer : MonoBehaviour
     private void FixedUpdate()
     {
         FollowHeadset();
-        if (isSprinting)
+
+        if (inputActions.XRILeftHand.Select.IsPressed() && inputActions.XRIRightHand.Select.IsPressed() && canSprint)
         {
-            Sprinting();
+            Sprinting(true);
         }
         else
         {
-            var sprintScript = GetComponent<ActionBasedContinuousMoveProvider>();
-            sprintScript.moveSpeed = OrignalValue;
+            Sprinting(false);
         }
-            
     }
 
     void FollowHeadset()
@@ -56,21 +69,69 @@ public class VRPlayer : MonoBehaviour
     }
     public void Jump()
     {
-        RB.AddForce(Vector3.up * 10, ForceMode.Impulse);
+        if (isGrounded)
+        {
+            RB.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        }
     }
 
-    public void Sprinting()
+    //Sprinting
+    public void Sprinting(bool on)
     {
+        if (on == true)
+        {
+            isSprinting = true;
+            var sprintScript = GetComponent<ActionBasedContinuousMoveProvider>();
+            sprintScript.moveSpeed = SprintValue;
+            CamEffects(SpeedEffect, Color.white, true);
+            SpintingTime += 0.01f;
+
+            if(SpintingTime > 10)
+            {
+                StartCoroutine(SprintTime());
+            }
+        }
+        if(on == false)
+        {
+            isSprinting = false;
+            var sprintScript = GetComponent<ActionBasedContinuousMoveProvider>();
+            sprintScript.moveSpeed = OrignalValue;
+            CamEffects(SpeedEffect, Color.white, false);
+            SpintingTime = 0f;
+        }
+    }
+    IEnumerator SprintTime()
+    {
+        CamEffects(SweatEffect, Color.blue, true);
+        CamEffects(SpeedEffect, Color.blue, false);
         var sprintScript = GetComponent<ActionBasedContinuousMoveProvider>();
-        sprintScript.moveSpeed = SprintValue;
+        sprintScript.moveSpeed = OrignalValue;
+        canSprint = false;
+
+        yield return new WaitForSeconds(10);
+        canSprint = true;
+        CamEffects(SweatEffect, Color.blue, false);
     }
 
+    //CameraEffects
+    public void CamEffects(GameObject Effect, Color CamColor, bool active)
+    {
+        Effect.SetActive(active);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
+    }
     private void OnEnable()
     {
-        
+        inputActions.Enable();
     }
     private void OnDisable()
     {
-        
+        inputActions.Disable();
     }
 }
