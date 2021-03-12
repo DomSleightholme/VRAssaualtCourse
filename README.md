@@ -1,4 +1,4 @@
-# VRAssaultCourse :trophy:
+# VR Wipeout :trophy:
 ## Project Description:
 
 This project is being developed for my final year project for Univeristy degree, Computing and Games Development. This project's current working title is called VR Assault Course, the game offers a virtually immersive experience in completing assault courses and dodging extreme obstacles, the project will have two stages of development; the first stage will focus on the mechanics and single player aspect of the game, the second stage will focus on the multiplayer aspect of the game allowing connectivity. For the first stage of development I will be focusing on the core mechanics of VR and the single player aspect of the project, for the second stage of development I will be focusing on the multiplayer aspect on the project and implementing easy functionality for connectivity. For the single player part of the project, there multiple levels with variations, you will be rewarded with badges for completing depending on competition time, if they completed the level successfully and if they completed the level challenges.
