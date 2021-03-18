@@ -106,16 +106,22 @@ public class HandPresence : MonoBehaviour
             Debug.Log("Pressing Primary Button");          
         }
 
+        targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue);
+        if (secondaryButtonValue)
+        {
+            Debug.Log("Pressing Secondary Button");
+        }
+
         targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
         if(triggerValue > 0.1f)
         {
-            Debug.Log("Trigger Pressed: " + triggerValue);
+            //Debug.Log("Trigger Pressed: " + triggerValue);
         }
 
         targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue);
         if(primary2DAxisValue != Vector2.zero)
         {
-            Debug.Log("Primary Touchpad: " + primary2DAxisValue);
+            //Debug.Log("Primary Touchpad: " + primary2DAxisValue);
         }
     }
 }
