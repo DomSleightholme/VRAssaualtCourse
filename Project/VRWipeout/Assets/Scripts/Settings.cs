@@ -6,9 +6,29 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
+    [Header("Preferences")]
+    public bool ContinuousTurnAngle;
+    public float TurnAngleValue;
+    public Color CameraVignette;
+    public Color UIPointerColour;
+
+    [Header("Interface")]
+    public int GUIMenuDistance;
+    public int GUIMenuHeight;
+
+    [Header("Graphics")]
+    public bool PostProcessing;
+    public int GraphicsIndex;
+
+    [Header("Accessibility")]
+    public bool SeatedMode;
+    public bool RealCouch;
+    public enum ControllerInput { VRControllers, Gamepad };
+    public ControllerInput controllerInput;
+
+    [Header("Audio")]
     public AudioMixer MusicMixer;
     public AudioMixer SFXMixer;
-
     public Slider MusicSlider;
     public Slider SFXSlider;
 
@@ -17,6 +37,9 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.SetQualityLevel(GraphicsIndex);
+
+        //Audio
         StartMusic();
         StartSFX();
 
