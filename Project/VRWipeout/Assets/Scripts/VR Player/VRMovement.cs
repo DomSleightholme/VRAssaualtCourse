@@ -10,6 +10,16 @@ public class VRMovement : MonoBehaviour
     public float Speed;
     public float RotationSpeed;
 
+    [Header("Sprinting")]
+    public GameObject SweatEffect;
+    public GameObject SpeedEffect;
+    private float SprintValue;
+    private float OrignalValue;
+    public bool canSprint;
+    public float Cooldown;
+    public float SpintingTime;
+    public bool isSprinting;
+
     [Header("Jumping")]
     public float JumpForce;
     public bool isGrounded;
@@ -34,6 +44,10 @@ public class VRMovement : MonoBehaviour
         RB = GetComponent<Rigidbody>();
 
         jumpInput = inputSource;
+
+        //Speed Variables
+        OrignalValue = Speed;
+        SprintValue *= Speed;
     }
 
     private void Update()
@@ -87,6 +101,7 @@ public class VRMovement : MonoBehaviour
         capsuleCollider.center = new Vector3(capsuleCenter.x, capsuleCollider.height / 2 + capsuleCollider.radius, capsuleCenter.z);
     }  
 
+    //Collision Detection
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.CompareTag("Ground"))
@@ -98,4 +113,55 @@ public class VRMovement : MonoBehaviour
     {
         isGrounded = false;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Death"))
+        {
+            var respawnscript = FindObjectOfType<Respawn>();
+            respawnscript.PlayerDeath();
+        }
+    }
+
+    //Camera Effects
+    public void Sprinting(bool on)
+    {
+        if (on == true)
+        {
+            isSprinting = true;
+            Speed = SprintValue;
+            CamEffects(SpeedEffect, Color.white, true);
+            SpintingTime += 0.01f;
+
+            if (SpintingTime > 10)
+            {
+                StartCoroutine(SprintTime());
+            }
+        }
+        if (on == false)
+        {
+            isSprinting = false;
+            Speed = OrignalValue;
+            CamEffects(SpeedEffect, Color.white, false);
+            SpintingTime = 0f;
+        }
+    }
+    IEnumerator SprintTime()
+    {
+        CamEffects(SweatEffect, Color.blue, true);
+        CamEffects(SpeedEffect, Color.blue, false);
+        Speed = OrignalValue;
+        canSprint = false;
+
+        yield return new WaitForSeconds(10);
+        canSprint = true;
+        CamEffects(SweatEffect, Color.blue, false);
+    }
+
+    //CameraEffects
+    public void CamEffects(GameObject Effect, Color CamColor, bool active)
+    {
+        Effect.SetActive(active);
+    }
+
 }

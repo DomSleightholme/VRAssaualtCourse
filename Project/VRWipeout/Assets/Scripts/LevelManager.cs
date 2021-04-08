@@ -17,4 +17,14 @@ public class LevelManager : MonoBehaviour
         //ConinuousMovement movement = FindObjectOfType<ConinuousMovement>();
         //movement.enabled = false;
     }
+
+    public void LevelDeath()
+    {
+
+    }
+
+    public void LevelComplete()
+    {
+
+    }
 }

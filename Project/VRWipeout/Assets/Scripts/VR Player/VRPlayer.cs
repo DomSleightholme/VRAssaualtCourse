@@ -35,7 +35,6 @@ public class VRPlayer : MonoBehaviour
 
     private void Awake()
     {
-        //inputActions.XRIRightHand.Jump.performed += ctx => Jump();
         canSprint = true;
     }
 
@@ -54,14 +53,6 @@ public class VRPlayer : MonoBehaviour
     {
         FollowHeadset();
 
-        //if (inputActions.XRILeftHand.Select.IsPressed() && inputActions.XRIRightHand.Select.IsPressed() && canSprint)
-        //{
-        //    Sprinting(true);
-        //}
-        //else
-        //{
-          //  Sprinting(false);
-        //}
     }
 
     void FollowHeadset()
@@ -118,17 +109,14 @@ public class VRPlayer : MonoBehaviour
         CamEffects(SweatEffect, Color.blue, false);
     }
 
-    //Climbing
-    public void Climb()
-    {
-
-    }
-
     //CameraEffects
     public void CamEffects(GameObject Effect, Color CamColor, bool active)
     {
         Effect.SetActive(active);
     }
+
+    //Collision Detection
+
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
