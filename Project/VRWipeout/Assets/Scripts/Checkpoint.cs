@@ -1,23 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Checkpoint : MonoBehaviour
 {
     [Header("Distance")]
-    public float DistanceLeft;
-    public float DistanceOverall;
+    public int distanceLeft;
+    public int distanceOverall;
+    private float DistanceLeft;
+    private float DistanceOverall;
     public GameObject Player;
-
-    [Header("UI")]
-    public Slider DistanceTracker;
 
     private void Start()
     {
         DistanceOverall = (Player.transform.position - transform.position).magnitude;
-
-        DistanceTracker.maxValue = DistanceOverall;
+        distanceOverall = Mathf.FloorToInt(DistanceOverall);
 
         Player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -32,7 +31,10 @@ public class Checkpoint : MonoBehaviour
     {
         DistanceLeft = (Player.transform.position - transform.position).magnitude;
 
-        DistanceTracker.value = DistanceLeft;
+        distanceLeft = Mathf.FloorToInt(DistanceLeft);
+
+        var gui = FindObjectOfType<CheckpointUI>();
+        gui.DistanceLeft(distanceLeft.ToString() + "m");
     }
 
 }

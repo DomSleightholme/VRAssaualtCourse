@@ -20,9 +20,15 @@ public class VRMovement : MonoBehaviour
     public float SpintingTime;
     public bool isSprinting;
 
+    [Header("Ground Dectection")]
+    public Transform groundCheckTransform;
+    public LayerMask groundMask;
+    public float groundDistance;
+    public bool isGrounded;
+
     [Header("Jumping")]
     public float JumpForce;
-    public bool isGrounded;
+    
 
     [Header("XR")]
     public XRNode inputSource;
@@ -34,7 +40,6 @@ public class VRMovement : MonoBehaviour
     private Rigidbody RB;
 
     [Header("Transforms")]
-    public LayerMask groundLayer;
     public Transform Cam;
 
     private void Start()
@@ -77,6 +82,8 @@ public class VRMovement : MonoBehaviour
         jumpController.TryGetFeatureValue(CommonUsages.primaryButton, out bool jumpPressed);
         if (jumpPressed)
             Jump();
+
+        groundCheck();
     }
 
     public bool Jump()
@@ -101,17 +108,13 @@ public class VRMovement : MonoBehaviour
         capsuleCollider.center = new Vector3(capsuleCenter.x, capsuleCollider.height / 2 + capsuleCollider.radius, capsuleCenter.z);
     }  
 
-    //Collision Detection
-    private void OnCollisionStay(Collision collision)
+    //GroundDetection
+    void groundCheck()
     {
-        if (collision.transform.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        isGrounded = false;
+        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+        groundCheckTransform.transform.position = capsuleCollider.bounds.min;
+
+        isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundDistance, groundMask);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -163,5 +166,4 @@ public class VRMovement : MonoBehaviour
     {
         Effect.SetActive(active);
     }
-
 }

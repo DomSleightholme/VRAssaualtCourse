@@ -8,7 +8,7 @@ public class Cannon : MonoBehaviour
     public float FireDelay;
     public float BulletForce;
     public bool isAutomatic;
-    [Range(-180f, 0f)]
+    [Range(-45f, 45f)]
     public float RotationRange;
 
     [Header("Transforms")]
@@ -26,7 +26,9 @@ public class Cannon : MonoBehaviour
 
     public void Update()
     {
-        CannonObject.transform.rotation = Quaternion.Euler(RotationRange,CannonObject.transform.rotation.y,90);
+        CannonObject.transform.localRotation = Quaternion.Euler(0,0, RotationRange);
+
+        Barrel.rotation = CannonObject.transform.rotation;
     }
 
     public void FireCannon()
@@ -34,8 +36,8 @@ public class Cannon : MonoBehaviour
         Debug.Log("Cannon fire");
 
         Rigidbody clone;
-        clone = Instantiate(Projectile, Barrel.position, Barrel.rotation);
+        clone = Instantiate(Projectile, Barrel.position, CannonObject.transform.localRotation);
 
-        clone.velocity = transform.TransformDirection(-Vector3.left * BulletForce);
+        clone.velocity = transform.TransformDirection(new Vector3(BulletForce, 0, 0));
     }
 }

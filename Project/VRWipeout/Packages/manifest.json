@@ -1,10 +1,11 @@
 {
   "dependencies": {
+    "com.sbstn_hn.rendererfeatures.urp-ssao": "https://github.com/sebastianhein/urp-ssao.git",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.vscode": "1.1.4",
     "com.unity.postprocessing": "2.3.0",
-    "com.unity.render-pipelines.universal": "7.3.1",
+    "com.unity.render-pipelines.universal": "7.4.3",
     "com.unity.test-framework": "1.1.13",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.14",
@@ -44,5 +45,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.sbstn_hn.rendererfeatures.urp-ssao": {
+      "revision": "HEAD",
+      "hash": "4958115f46d11e781af478ae78732c55f2bed446"
+    }
   }
 }

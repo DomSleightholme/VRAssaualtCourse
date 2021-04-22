@@ -33,7 +33,7 @@ public class Sweeper : MonoBehaviour
     {
         // transform.Rotate(0,0, RotationSpeed * Time.deltaTime);
 
-        Quaternion deltaRotation = Quaternion.Euler(0, 0, RotationSpeed * Time.deltaTime);
+        Quaternion deltaRotation = Quaternion.Euler(0, RotationSpeed * Time.deltaTime, 0);
         RB.MoveRotation(RB.rotation * deltaRotation);
     }
 

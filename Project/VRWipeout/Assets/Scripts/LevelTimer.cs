@@ -32,6 +32,8 @@ public class LevelTimer : MonoBehaviour
 
         TimerOn();
         TimerUI();
+
+        
     }
 
     void TimerOn()
