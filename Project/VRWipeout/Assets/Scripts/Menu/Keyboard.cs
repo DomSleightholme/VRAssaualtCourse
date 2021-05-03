@@ -6,9 +6,11 @@ using TMPro;
 
 public class Keyboard : MonoBehaviour
 {
+    [Header("Variables")]
     public TMP_InputField inputField;
     public bool capsLock;
 
+    [Header("Lists")]
     public List<TMP_Text> letters;
     public List<GameObject> hideObjects;
 
@@ -44,12 +46,12 @@ public class Keyboard : MonoBehaviour
 
     public void backSpace()
     {
-        string text = inputField.text;
+      string text = inputField.text;
 
       if(inputField.text.Length > 0)
-        {
+      {
             inputField.text = text.Remove(text.Length - 1);
-        }
+      }
     }
     public void CapsButton()
     {
