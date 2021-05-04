@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour
     [Header("UI")]
     public List<string> Tips = new List<string>();
     public TMP_Text LevelTitleUI;
-    public TMP_Text LevelModeUI;
+    public TMP_Text TipsUI;
 
     [Header("Next Level")]
     public string LevelTitle;
@@ -24,7 +24,9 @@ public class LoadingScreen : MonoBehaviour
         StartCoroutine(NextLevel());
 
         LevelTitleUI.text = LevelTitle;
-        LevelModeUI.text = LevelMode;
+
+        int randomNum = Random.Range(0, Tips.Count);
+        TipsUI.text = Tips[randomNum];
     }
 
     IEnumerator NextLevel()
