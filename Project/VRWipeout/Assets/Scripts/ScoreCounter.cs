@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreCounter : MonoBehaviour
 {
     [Header("Score Factors")]
-    public float CompletionTime;
+    public float CompletionTimeMinutes;
+    public float CompletionTimeSeconds;
     public float RespawnAmount;
-    public float LevelDifficulty;
 
     [Header("Challenges")]
     public bool Challenge1Complete;
@@ -16,64 +17,33 @@ public class ScoreCounter : MonoBehaviour
 
     [Header("Result")]
     public float FinalResult;
-    public bool GoldMedal;
-    public bool SliverMedal;
-    public bool BronzeMedal;
+    public bool ChallengeOneStar;
+    public bool ChallengeTwoStar;
+    public bool ChallengeThreeStar;
 
-    private float GoldValue;
-    private float SilverValue;
-    private float BronzeValue;
 
     public void LevelComplete()
     {
-        MedalValues();
-
-        float finalScore;
-
-        finalScore = RespawnAmount + LevelDifficulty * CompletionTime;
-
         if (Challenge1Complete)
         {
-            finalScore += 100;
+            FinalResult += 100;
+            ChallengeOneStar = true;
         }
-        if (Challenge1Complete)
+        if (Challenge2Complete)
         {
-            finalScore += 200;
+            FinalResult += 200;
+            ChallengeTwoStar = true;
         }
-        if (Challenge1Complete)
+        if (Challenge3Complete)
         {
-            finalScore += 300;
+            FinalResult += 300;
+            ChallengeThreeStar = true;
         }
 
-        CalculateMedal(finalScore);
-    }
-
-    private void MedalValues()
-    {
-        GoldValue = RespawnAmount + LevelDifficulty * CompletionTime + 600;
-        SilverValue = RespawnAmount + LevelDifficulty * CompletionTime + 300;
-        BronzeValue = RespawnAmount + LevelDifficulty * CompletionTime;
-    }
-
-    public void CalculateMedal(float score)
-    {
-        if(score == GoldValue)
+        var scores = FindObjectOfType<PlayerScores>();
+        if(SceneManager.GetActiveScene().buildIndex == 3 && FinalResult > scores.Level1_OverallScore)
         {
-            GoldMedal = true;
-            SliverMedal = true;
-            BronzeMedal = true;
-        }
-        else if(score == SilverValue)
-        {
-            GoldMedal = false;
-            SliverMedal = true;
-            BronzeMedal = true;
-        }
-        else
-        {
-            GoldMedal = false;
-            SliverMedal = false;
-            BronzeMedal = true;
+            scores.Level1_OverallScore = (int)FinalResult;
         }
     }
 }
