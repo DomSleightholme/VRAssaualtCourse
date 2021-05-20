@@ -7,12 +7,9 @@ public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
     public GameObject Menu;
-    public float PauseCountdownTimer;
 
     void Awake()
     {
-        
-       
         Resume();
     }
 
@@ -23,28 +20,26 @@ public class PauseMenu : MonoBehaviour
         {
             Resume();
         }
-        else
+        if(isPaused == false)
         {
             Paused();
         }
     }
 
-    void Paused()
+    public void Paused()
     {
         isPaused = true;
-        Menu.SetActive(true);
-        Time.timeScale = 0;
+        Menu.SetActive(true);    
 
         var levelManager = FindObjectOfType<LevelManager>();
         levelManager.PausedGame();
     }
-    void Resume()
+    public void Resume()
     {
         isPaused = false;
         Menu.SetActive(false);
-        Time.timeScale = 1;
 
-        var Countdown = FindObjectOfType<Countdown>();
-        Countdown.StartCountdown();
+        var levelManager = FindObjectOfType<LevelManager>();
+        levelManager.LevelCountdown.SetTrigger("Start");
     }
 }

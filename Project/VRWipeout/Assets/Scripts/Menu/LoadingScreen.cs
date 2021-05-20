@@ -19,6 +19,12 @@ public class LoadingScreen : MonoBehaviour
     public string LevelMode;
     public int SceneTimer;
 
+    private void Awake()
+    {
+        var gameManager = FindObjectOfType<GameManager>();
+        LevelTitle = gameManager.nextScene;
+    }
+
     private void Start()
     {
         StartCoroutine(NextLevel());

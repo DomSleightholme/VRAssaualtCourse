@@ -47,6 +47,6 @@ public class Respawn : MonoBehaviour
     public void LevelEnd()
     {
         var levelmanager = FindObjectOfType<LevelManager>();
-        levelmanager.LevelDeath();
+        //levelmanager.LevelDeath();
     }
 }

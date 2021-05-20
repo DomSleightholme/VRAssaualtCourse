@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pendulum : MonoBehaviour
 {
     [Header("Speed")]
-    [Range(0, 3)]
+    [Range(-3, 3)]
     public float RotationSpeed;
 
     [Header("Distance")]
@@ -23,11 +23,11 @@ public class Pendulum : MonoBehaviour
     {
        if(Left == true)
         {
-            transform.Rotate(new Vector3(0, 0, -RotationSpeed));
+            transform.Rotate(new Vector3(-RotationSpeed, 0, 0));
         }
         else
         {
-            transform.Rotate(new Vector3(0, 0, RotationSpeed));
+            transform.Rotate(new Vector3(RotationSpeed, 0, 0));
         }
 
         if (transform.eulerAngles.z >= MaxRight && transform.eulerAngles.z <= MaxRight + 5)

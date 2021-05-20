@@ -17,9 +17,6 @@ As multiplayer can be a complex thing to achieve, I will be working on have a ma
 	* Oculus Android
 	* OpenVR Desktop
 	* XR Interaction Toolkit preview - 0.9.4
-	XR Plugin Management 3.2.15
-	* ProBuilder 4.2.3
-	* ProGrids preview.6 - 3.0.3
 	* Universal RP 7.3.1
 	* PUN2
 	

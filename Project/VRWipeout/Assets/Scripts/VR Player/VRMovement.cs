@@ -9,38 +9,37 @@ public class VRMovement : MonoBehaviour
     [Header("Movement")]
     public float Speed;
     public float RotationSpeed;
+    private float OrignalValue;
 
     [Header("Sprinting")]
-    public GameObject SweatEffect;
+    public float SprintSpeed;
     public GameObject SpeedEffect;
-    private float SprintValue;
-    private float OrignalValue;
-    public bool canSprint;
-    public float Cooldown;
-    public float SpintingTime;
     public bool isSprinting;
 
     [Header("Ground Dectection")]
-    public Transform groundCheckTransform;
-    public LayerMask groundMask;
-    public float groundDistance;
     public bool isGrounded;
 
     [Header("Jumping")]
-    public float JumpForce;
-    
+    public float JumpForce;  
 
     [Header("XR")]
     public XRNode inputSource;
     private Vector2 inputAxis;
     private Vector2 rotationAxis;
     public XRNode RotationInput;
+    public bool Gamepad;
+    public List<XRController> Hands;
+    public float HapticAmp;
+    public float HapticDuration;
     private XRNode jumpInput;
+    private XRNode pauseInput;
     private XRRig Rig;
     private Rigidbody RB;
 
     [Header("Transforms")]
     public Transform Cam;
+
+    private Settings settings;
 
     private void Start()
     {
@@ -49,53 +48,140 @@ public class VRMovement : MonoBehaviour
         RB = GetComponent<Rigidbody>();
 
         jumpInput = inputSource;
+        pauseInput = inputSource;
 
-        //Speed Variables
         OrignalValue = Speed;
-        SprintValue *= Speed;
+
+        settings = FindObjectOfType<Settings>();
     }
 
     private void Update()
     {
         FollowHeadset();
 
+        //Get Movement Input
         InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
         device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
 
+        //Get Rotatation Input
         InputDevice rotationDevice = InputDevices.GetDeviceAtXRNode(RotationInput);
         rotationDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out rotationAxis);
     }
 
     private void FixedUpdate()
     {
-        //Position
-        Quaternion headYaw = Quaternion.Euler(0, Rig.cameraGameObject.transform.eulerAngles.y, 0);
-        Vector3 direction = headYaw * new Vector3(inputAxis.x, RB.velocity.y, inputAxis.y) * Time.fixedDeltaTime * Speed;
-        RB.MovePosition(RB.position + direction);
+        var levelManager = FindObjectOfType<LevelManager>();
+        if (levelManager.LevelRunning)
+        {
+            if(Gamepad == true)
+            {
+                //Position
+                float x = Input.GetAxis("Horizontal");
+                float z = Input.GetAxis("Vertical");
 
-        //Rotation
-        Vector3 rotation = rotationAxis * Time.fixedDeltaTime * RotationSpeed;
-        transform.Rotate(transform.localRotation.x, rotation.x, transform.localRotation.x);
+                Quaternion headYaw = Quaternion.Euler(0, Rig.cameraGameObject.transform.eulerAngles.y, 0);
+                Vector3 direction = headYaw * new Vector3(x, RB.velocity.y, z) * Time.fixedDeltaTime * Speed;
+                RB.MovePosition(RB.position + direction);
 
-        //Jump
-        InputDevice jumpController = InputDevices.GetDeviceAtXRNode(jumpInput);
-        jumpController.TryGetFeatureValue(CommonUsages.primaryButton, out bool jumpPressed);
-        if (jumpPressed)
-            Jump();
+                //Rotation
+                float rot = Input.GetAxis("Rotate");
+                Vector3 gamepadRotation = new Vector3(0,rot,0) * Time.fixedDeltaTime * RotationSpeed;
+                transform.Rotate(transform.localRotation.x, gamepadRotation.y, transform.localRotation.z);
 
-        groundCheck();
+                //Jump
+                if (Input.GetButtonDown("Jump"))
+                {
+                    Jump();
+                }
+
+                //Crouch
+                if (settings.RealCouch == false)
+                {
+                    if (Input.GetButtonDown("Couch"))
+                    {
+                        Crouch();
+                    }
+                }
+
+                //Pause
+                if (Input.GetButtonDown("Pause"))
+                {
+                    var pauseMenu = FindObjectOfType<PauseMenu>();
+                    pauseMenu.InputCheck();
+                }
+            }
+            if(Gamepad == false)
+            {
+                //Position
+                Quaternion headYaw = Quaternion.Euler(0, Rig.cameraGameObject.transform.eulerAngles.y, 0);
+                Vector3 direction = headYaw * new Vector3(inputAxis.x, RB.velocity.y, inputAxis.y) * Time.fixedDeltaTime * Speed;
+                RB.MovePosition(RB.position + direction);
+
+                //Jump
+                InputDevice jumpController = InputDevices.GetDeviceAtXRNode(jumpInput);
+                jumpController.TryGetFeatureValue(CommonUsages.primaryButton, out bool jumpPressed);
+                if (jumpPressed)
+                {
+                    Jump();                
+                }
+
+                //Crouch
+                if(settings.RealCouch == false)
+                {
+                    InputDevice crouch = InputDevices.GetDeviceAtXRNode(inputSource);
+                    crouch.TryGetFeatureValue(CommonUsages.primaryButton, out bool crouchPressed);
+                    if (crouchPressed)
+                    {
+                        Crouch();
+                    }
+                }
+
+                //Rotation
+                Vector3 rotation = rotationAxis * Time.fixedDeltaTime * RotationSpeed;
+                transform.Rotate(transform.localRotation.x, rotation.x, transform.localRotation.x);
+
+                //Pause
+                InputDevice pause = InputDevices.GetDeviceAtXRNode(pauseInput);
+                pause.TryGetFeatureValue(CommonUsages.menuButton, out bool playerPause);
+                if (playerPause)
+                {
+                    var pauseMenu = FindObjectOfType<PauseMenu>();
+                    pauseMenu.InputCheck();
+                }
+
+
+                InputDevice sprint = InputDevices.GetDeviceAtXRNode(inputSource);
+                sprint.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool sprintPressed);
+                if (sprintPressed)
+                {
+                    Sprinting(true);
+                }
+                else
+                {
+                    Sprinting(false);
+                }
+            }
+        }
     }
 
-    public bool Jump()
+    public void Jump()
     {
         if (isGrounded)
         {
-            RB.AddForce(Vector3.up * JumpForce * Time.fixedDeltaTime, ForceMode.Impulse);
-            return true;
+            RB.velocity += JumpForce * Vector3.up * Time.deltaTime;
+
+            if(Gamepad == false)
+            {
+                HapticInput(HapticAmp, HapticDuration);
+            }
         }
-        else
+    }
+
+    public void Crouch()
+    {
+        if (isGrounded)
         {
-            return false;
+
         }
     }
 
@@ -109,20 +195,31 @@ public class VRMovement : MonoBehaviour
     }  
 
     //GroundDetection
-    void groundCheck()
-    {
-        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
-        groundCheckTransform.transform.position = capsuleCollider.bounds.min;
-
-        isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundDistance, groundMask);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Death"))
+        if (collision.transform.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Death"))
         {
             var respawnscript = FindObjectOfType<Respawn>();
             respawnscript.PlayerDeath();
+        }
+        if (other.transform.CompareTag("Finish"))
+        {
+            var levelManager = FindObjectOfType<LevelManager>();
+            levelManager.LevelComplete();
         }
     }
 
@@ -132,38 +229,28 @@ public class VRMovement : MonoBehaviour
         if (on == true)
         {
             isSprinting = true;
-            Speed = SprintValue;
+            Speed = SprintSpeed;
             CamEffects(SpeedEffect, Color.white, true);
-            SpintingTime += 0.01f;
-
-            if (SpintingTime > 10)
-            {
-                StartCoroutine(SprintTime());
-            }
         }
         if (on == false)
         {
             isSprinting = false;
             Speed = OrignalValue;
             CamEffects(SpeedEffect, Color.white, false);
-            SpintingTime = 0f;
         }
-    }
-    IEnumerator SprintTime()
-    {
-        CamEffects(SweatEffect, Color.blue, true);
-        CamEffects(SpeedEffect, Color.blue, false);
-        Speed = OrignalValue;
-        canSprint = false;
-
-        yield return new WaitForSeconds(10);
-        canSprint = true;
-        CamEffects(SweatEffect, Color.blue, false);
     }
 
     //CameraEffects
     public void CamEffects(GameObject Effect, Color CamColor, bool active)
     {
         Effect.SetActive(active);
+    }
+
+    public void HapticInput(float amp, float duration)
+    {
+        for(int i = 0; i < Hands.Count; i++)
+        {
+            Hands[i].SendHapticImpulse(amp, duration);
+        }
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class ScoreCounter : MonoBehaviour
 {
     [Header("Score Factors")]
-    public float CompletionTimeMinutes;
-    public float CompletionTimeSeconds;
+    public int FinalResultMinutes;
+    public int FinalResultSeconds;
     public float RespawnAmount;
 
     [Header("Challenges")]
@@ -15,35 +15,104 @@ public class ScoreCounter : MonoBehaviour
     public bool Challenge2Complete;
     public bool Challenge3Complete;
 
-    [Header("Result")]
-    public float FinalResult;
-    public bool ChallengeOneStar;
-    public bool ChallengeTwoStar;
-    public bool ChallengeThreeStar;
+    private PlayerScores scores;
+    private void Start()
+    {
+        scores = FindObjectOfType<PlayerScores>();
+    }
 
 
     public void LevelComplete()
     {
-        if (Challenge1Complete)
+        //Check times and scores
+        CheckTimes();
+        CheckChallenges();
+    }
+
+    private void CheckTimes()
+    {
+        //Gets the scene index to check which level the player is on
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if(sceneIndex == 3 && FinalResultMinutes < scores.Level1_Minutes)
         {
-            FinalResult += 100;
-            ChallengeOneStar = true;
+            scores.Level1_Minutes = FinalResultMinutes;
+            scores.Level1_Seconds = FinalResultSeconds;
         }
-        if (Challenge2Complete)
+        if (sceneIndex == 4 && FinalResultMinutes < scores.Level2_Minutes)
         {
-            FinalResult += 200;
-            ChallengeTwoStar = true;
+            scores.Level2_Minutes = FinalResultMinutes;
+            scores.Level2_Seconds = FinalResultSeconds;
         }
-        if (Challenge3Complete)
+        if (sceneIndex == 5 && FinalResultMinutes < scores.Level3_Minutes)
         {
-            FinalResult += 300;
-            ChallengeThreeStar = true;
+            scores.Level3_Minutes = FinalResultMinutes;
+            scores.Level3_Seconds = FinalResultSeconds;
+        }
+        if (sceneIndex == 6 && FinalResultMinutes < scores.Level4_Minutes)
+        {
+            scores.Level4_Minutes = FinalResultMinutes;
+            scores.Level4_Seconds = FinalResultSeconds;
+        }
+    }
+
+    private void CheckChallenges()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        //Level 1
+        if(sceneIndex == 3 && Challenge1Complete)
+        {
+            scores.Level1_Challenge1 = true;
+        }
+        if (sceneIndex == 3 && Challenge2Complete)
+        {
+            scores.Level1_Challenge2 = true;
+        }
+        if (sceneIndex == 3 && Challenge3Complete)
+        {
+            scores.Level1_Challenge3 = true;
         }
 
-        var scores = FindObjectOfType<PlayerScores>();
-        if(SceneManager.GetActiveScene().buildIndex == 3 && FinalResult > scores.Level1_OverallScore)
+        //Level 2
+        if (sceneIndex == 4 && Challenge1Complete)
         {
-            scores.Level1_OverallScore = (int)FinalResult;
+            scores.Level2_Challenge1 = true;
+        }
+        if (sceneIndex == 4 && Challenge2Complete)
+        {
+            scores.Level2_Challenge2 = true;
+        }
+        if (sceneIndex == 4 && Challenge3Complete)
+        {
+            scores.Level2_Challenge3 = true;
+        }
+
+        //Level 3
+        if (sceneIndex == 5 && Challenge1Complete)
+        {
+            scores.Level3_Challenge1 = true;
+        }
+        if (sceneIndex == 5 && Challenge2Complete)
+        {
+            scores.Level3_Challenge2 = true;
+        }
+        if (sceneIndex == 5 && Challenge3Complete)
+        {
+            scores.Level3_Challenge3 = true;
+        }
+
+        //Level 4
+        if (sceneIndex == 6 && Challenge1Complete)
+        {
+            scores.Level4_Challenge1 = true;
+        }
+        if (sceneIndex == 6 && Challenge2Complete)
+        {
+            scores.Level4_Challenge2 = true;
+        }
+        if (sceneIndex == 6 && Challenge3Complete)
+        {
+            scores.Level4_Challenge3 = true;
         }
     }
 }

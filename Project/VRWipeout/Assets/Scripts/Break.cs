@@ -30,6 +30,7 @@ public class Break : MonoBehaviour
         }
 
         minTimer = TimeLimit;
+        UI.SetActive(false);
     }
 
     private void Update()
