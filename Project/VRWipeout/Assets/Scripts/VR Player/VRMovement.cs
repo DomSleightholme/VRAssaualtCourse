@@ -95,7 +95,7 @@ public class VRMovement : MonoBehaviour
                 }
 
                 //Crouch
-                if (settings.RealCouch == false)
+                if (settings.RealCrouch == false)
                 {
                     if (Input.GetButtonDown("Couch"))
                     {
@@ -126,7 +126,7 @@ public class VRMovement : MonoBehaviour
                 }
 
                 //Crouch
-                if(settings.RealCouch == false)
+                if(settings.RealCrouch == false)
                 {
                     InputDevice crouch = InputDevices.GetDeviceAtXRNode(inputSource);
                     crouch.TryGetFeatureValue(CommonUsages.primaryButton, out bool crouchPressed);
@@ -214,7 +214,7 @@ public class VRMovement : MonoBehaviour
         if (other.transform.CompareTag("Death"))
         {
             var respawnscript = FindObjectOfType<Respawn>();
-            respawnscript.PlayerDeath();
+            respawnscript.PlayerRespawn();
         }
         if (other.transform.CompareTag("Finish"))
         {

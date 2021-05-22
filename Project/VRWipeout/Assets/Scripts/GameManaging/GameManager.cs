@@ -26,5 +26,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
         nextScene = scene;
+
+        PlayerPrefs.SetString("LevelName", scene);
     }
 }

@@ -3199,7 +3199,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1123445660}
+      - m_Target: {fileID: 0}
         m_MethodName: loadScene
         m_Mode: 5
         m_Arguments:
@@ -6832,6 +6832,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213815602}
   m_CullTransparentMesh: 0
+--- !u!1 &215601239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215601240}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &215601240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215601239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1128178183}
+  - {fileID: 1606637906}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216032132
 GameObject:
   m_ObjectHideFlags: 0
@@ -15424,7 +15456,7 @@ GameObject:
   - component: {fileID: 469151231}
   - component: {fileID: 469151232}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: GUIHeight_Sldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18087,6 +18119,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567979307}
   m_CullTransparentMesh: 0
+--- !u!1001 &569153981
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5961112420165536234, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_Name
+      value: PostProcessing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536244, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961112420165536245, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 326ad4b454a35cb4bb9e2e54cc28376d,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d5731c9fa720eb4eade6a2cb01dbf3f, type: 3}
 --- !u!1 &580476778
 GameObject:
   m_ObjectHideFlags: 0
@@ -29009,7 +29116,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1123445660}
+      - m_Target: {fileID: 0}
         m_MethodName: loadScene
         m_Mode: 5
         m_Arguments:
@@ -32192,7 +32299,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1123445660}
+      - m_Target: {fileID: 0}
         m_MethodName: loadScene
         m_Mode: 5
         m_Arguments:
@@ -33684,9 +33791,8 @@ GameObject:
   - component: {fileID: 1123445656}
   - component: {fileID: 1123445658}
   - component: {fileID: 1123445659}
-  - component: {fileID: 1123445660}
   m_Layer: 0
-  m_Name: XR Interaction Manager
+  m_Name: Level Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33732,57 +33838,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TurnAngleSlider: {fileID: 1152206381}
   TurnAngleValueText: {fileID: 1726845381}
-  TurnAngleValue: 45
-  CameraVignette: {r: 0, g: 0, b: 0, a: 0}
+  TurnAngleValue: 60
   GUIMenuDistance: 0
   GUIMenuHeight: 0
   GUIMenuDistanceSlider: {fileID: 2030361791}
   GUIMenuHeightSlider: {fileID: 469151232}
   GUIMenuDistanceText: {fileID: 2000918249}
   GUIMenuHeightText: {fileID: 1697241242}
-  PostProcessing: 1
-  GraphicsIndex: 3
-  RealCouch: 1
+  PostProcessing: 0
+  GraphicsIndex: 0
+  RealCouch: 0
   Gamepad: 0
-  OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+  OutlineColor: 
   MusicMixer: {fileID: 24100000, guid: 3db08f88119a28b428ee41c2bf4573b1, type: 2}
   SFXMixer: {fileID: 24100000, guid: 381a2224c8b156e469653eea512e36c9, type: 2}
   MusicSlider: {fileID: 864036073}
   SFXSlider: {fileID: 710670318}
 --- !u!114 &1123445659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123445655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 465ffdaddfdd2164080dfbc6d5e1dcb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Level1_Minutes: 0
-  Level1_Seconds: 0
-  Level1_Challenge1: 0
-  Level1_Challenge2: 0
-  Level1_Challenge3: 0
-  Level1_OverallScore: 0
-  Level2_Minutes: 0
-  Level2_Seconds: 0
-  Level2_Challenge1: 0
-  Level2_Challenge2: 0
-  Level2_Challenge3: 0
-  Level3_Minutes: 0
-  Level3_Seconds: 0
-  Level3_Challenge1: 0
-  Level3_Challenge2: 0
-  Level3_Challenge3: 0
-  Level4_Minutes: 0
-  Level4_Seconds: 0
-  Level4_Challenge1: 0
-  Level4_Challenge2: 0
-  Level4_Challenge3: 0
---- !u!114 &1123445660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34149,8 +34221,8 @@ Transform:
   m_LocalPosition: {x: 5.2543683, y: -2.5722518, z: 10.515327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 215601240}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1128178184
 AudioSource:
@@ -50462,8 +50534,8 @@ Transform:
   m_LocalPosition: {x: 5.2543683, y: -2.5722518, z: 10.515327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 215601240}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1611697856
 GameObject:
@@ -61257,6 +61329,36 @@ RectTransform:
   m_AnchoredPosition: {x: 152.56004, y: -2.3999949}
   m_SizeDelta: {x: -12.6, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1981995801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981995802}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981995802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981995801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984718007
 GameObject:
   m_ObjectHideFlags: 0
@@ -62319,7 +62421,7 @@ GameObject:
   - component: {fileID: 2030361792}
   - component: {fileID: 2030361791}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: GUIDIstance_Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62980,7 +63082,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1123445660}
+      - m_Target: {fileID: 0}
         m_MethodName: loadScene
         m_Mode: 5
         m_Arguments:

@@ -5,13 +5,13 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
-public class Settings : MonoBehaviour
+public class SettingsGUI : MonoBehaviour
 {
     [Header("Preferences")]
     public Slider TurnAngleSlider;
     public TMP_Text TurnAngleValueText;
     public float TurnAngleValue;
-    public Color CameraVignette;
+    private string CameraVignetteColor;
 
     [Header("Interface")]
     public int GUIMenuDistance;
@@ -28,7 +28,7 @@ public class Settings : MonoBehaviour
     [Header("Accessibility")]
     public bool RealCouch;
     public bool Gamepad;
-    public Color OutlineColor;
+    public string OutlineColor;
 
     [Header("Audio")]
     public AudioMixer MusicMixer;
@@ -38,21 +38,6 @@ public class Settings : MonoBehaviour
 
     float music;
     float sfx;
-
-    private static Settings playerSettings;
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-
-        if (playerSettings == null)
-        {
-            playerSettings = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
 
     private void Start()
     {
@@ -73,8 +58,100 @@ public class Settings : MonoBehaviour
         TurnAngleValueText.text = turnText.ToString();
         GUIMenuDistanceText.text = GUIMenuDistance.ToString();
         GUIMenuHeightText.text = GUIMenuHeight.ToString();
+
+        getData();
+        saveData();
     }
 
+    //Get Player Prefs Data
+    private void getData()
+    {
+        TurnAngleValue = PlayerPrefs.GetFloat("TurnAngleValue");
+
+        GUIMenuDistance = PlayerPrefs.GetInt("GUIMenuDistance");
+        GUIMenuHeight = PlayerPrefs.GetInt("GUIMenuHeight");
+        GraphicsIndex = PlayerPrefs.GetInt("GraphicsIndex");
+
+        CameraVignetteColor = PlayerPrefs.GetString("CameraVignetteColor");
+        OutlineColor = PlayerPrefs.GetString("OutlineColor");
+
+        //Bool
+        int postProcessing = PlayerPrefs.GetInt("PostProcessing");
+        if(postProcessing == 0)
+        {
+            PostProcessing = false;
+        }
+        else
+        {
+            PostProcessing = true;
+        }
+
+        int realCrouch = PlayerPrefs.GetInt("RealCrouch");
+        if(realCrouch == 0)
+        {
+            RealCouch = false;
+        }
+        else
+        {
+            RealCouch = true;
+        }
+
+        int gamepad = PlayerPrefs.GetInt("Gamepad");
+        if(gamepad == 0)
+        {
+            Gamepad = false;
+        }
+        else
+        {
+            Gamepad = true;
+        }
+    }
+
+    //Save to Player Prefs
+    private void saveData()
+    {
+        //Float
+        PlayerPrefs.SetFloat("TurnAngleValue", TurnAngleValue);
+
+        //Int
+        PlayerPrefs.SetInt("GUIMenuDistance", GUIMenuDistance);
+        PlayerPrefs.SetInt("GUIMenuHeight", GUIMenuHeight);
+        PlayerPrefs.SetInt("GraphicsIndex", GraphicsIndex);
+
+        //String
+        PlayerPrefs.SetString("CameraVignetteColor", CameraVignetteColor);
+        PlayerPrefs.SetString("OutlineColor", OutlineColor);
+
+        //Bool
+        if (RealCouch)
+        {
+            PlayerPrefs.SetInt("RealCrouch", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("RealCrouch", 1);
+        }
+
+        if (Gamepad)
+        {
+            PlayerPrefs.SetInt("Gamepad", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Gamepad", 0);
+        }
+
+        if (PostProcessing)
+        {
+            PlayerPrefs.SetInt("PostProcessing", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("PostProcessing", 0);
+        }
+    }
+
+    //Get Music Volume
     private float StartMusic()
     {
         //Gets the volume from the Music Mixer
@@ -89,7 +166,6 @@ public class Settings : MonoBehaviour
             return 0f;
         }
     }
-
     private float StartSFX()
     {
         //Gets the volume from the Music Mixer
@@ -104,6 +180,7 @@ public class Settings : MonoBehaviour
         }
     }
 
+    //Set Settings Functions
     public void SetMusicVolume(float volume)
     {
         MusicMixer.SetFloat("MusicVolume", volume);
@@ -133,57 +210,11 @@ public class Settings : MonoBehaviour
     }
     public void setOutlineColor(string ColorText)
     {
-        if(ColorText == "Red")
-        {
-            OutlineColor = Color.red;
-        }
-        if(ColorText == "Blue")
-        {
-            OutlineColor = Color.blue;
-        }
-        if (ColorText == "Green")
-        {
-            OutlineColor = Color.green;
-        }
-        if(ColorText == "Yellow")
-        {
-            OutlineColor = Color.yellow;
-        }
-        if(ColorText == "White")
-        {
-            OutlineColor = Color.white;
-        }
-        if(ColorText == "Black")
-        {
-            OutlineColor = Color.black;
-        }
+        OutlineColor = ColorText;
     }
     public void setCamColor(string ColorText)
     {
-        if (ColorText == "Red")
-        {
-            CameraVignette = Color.red;
-        }
-        if (ColorText == "Blue")
-        {
-            CameraVignette = Color.blue;
-        }
-        if (ColorText == "Green")
-        {
-            CameraVignette = Color.green;
-        }
-        if (ColorText == "Yellow")
-        {
-            CameraVignette = Color.yellow;
-        }
-        if (ColorText == "White")
-        {
-            CameraVignette = Color.white;
-        }
-        if (ColorText == "Black")
-        {
-            CameraVignette = Color.black;
-        }
+        CameraVignetteColor = ColorText;
     }
     public void PostProcessingMode(bool PostP)
     {

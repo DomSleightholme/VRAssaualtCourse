@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    public bool respawnMode;
-
     [Header("Checkpoint Name")]
     public string CurrentCheckpoint;
 
@@ -25,28 +23,11 @@ public class Respawn : MonoBehaviour
         Checkpoint_3 = GameObject.Find("Checkpoint_3");
         Spawn = GameObject.Find("MainSpawn");
     }
-    public void PlayerDeath() 
-    {
-        if (respawnMode)
-        {
-            PlayerRespawn();
-        }
-        else
-        {
-            LevelEnd();
-        }
-    }
 
     public void PlayerRespawn()
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         
         //Spawn at Checkpoint
-    }
-
-    public void LevelEnd()
-    {
-        var levelmanager = FindObjectOfType<LevelManager>();
-        //levelmanager.LevelDeath();
     }
 }

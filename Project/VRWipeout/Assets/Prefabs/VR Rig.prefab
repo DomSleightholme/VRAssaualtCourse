@@ -2851,11 +2851,6 @@ MonoBehaviour:
   SpeedEffect: {fileID: 7971114740732689252, guid: 90f1a1d8dde10584f9392c69d5dcfcb8,
     type: 3}
   isSprinting: 0
-  groundCheckTransform: {fileID: 1544648164}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 256
-  groundDistance: 0.1
   isGrounded: 0
   JumpForce: 40
   inputSource: 4

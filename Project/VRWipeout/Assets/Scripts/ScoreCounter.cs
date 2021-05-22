@@ -21,7 +21,6 @@ public class ScoreCounter : MonoBehaviour
         scores = FindObjectOfType<PlayerScores>();
     }
 
-
     public void LevelComplete()
     {
         //Check times and scores
