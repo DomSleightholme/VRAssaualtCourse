@@ -1,15 +1,8 @@
 # VR Wipeout :trophy:
 ## Project Description:
+VR Wipeout is a first-person virtual reality assault course video game developed and published by TheDoritoDom, the video game is focused on the player competing in various courses to achieve high scores while surviving the onslaught of multiple obstacles included in the game! From humongous wrecking balls or deadly cannons, the player is in for a ride playing VR Wipeout! VR Wipeout is currently in development using the Oculus Rift S headset, Unity Engine and OpenXR to create a dynamic and exciting experience on the assault course game genre, the game uses OpenXR package to provide support to all PC-compatible VR headsets and plans to include game support for headsets such as the Oculus Quest 2, the All-in-One VR headset. In VR Wipeout, there are four unique levels what capture the assault course experience in virtual reality, Hill Dash, Mega-Sweep, The Balancer and The Impersonator all offer a unique variety of obstacles to face and truly capture the experience of assault courses. There are also more courses in VR Wipeout, the tutorial level shows the user how to play and the multiplayer level allows you to play the course with friends!
 
-This project is being developed for my final year project for Univeristy degree, Computing and Games Development. This project's current working title is called VR Assault Course, the game offers a virtually immersive experience in completing assault courses and dodging extreme obstacles, the project will have two stages of development; the first stage will focus on the mechanics and single player aspect of the game, the second stage will focus on the multiplayer aspect of the game allowing connectivity. For the first stage of development I will be focusing on the core mechanics of VR and the single player aspect of the project, for the second stage of development I will be focusing on the multiplayer aspect on the project and implementing easy functionality for connectivity. For the single player part of the project, there multiple levels with variations, you will be rewarded with badges for completing depending on competition time, if they completed the level successfully and if they completed the level challenges.
-
-Using Photon Unity Networking (PUN) version two, a Unity package for multiplayer games. After doing research I will be enabling multiplayer access by using the free package of PUN 2 as it has all the features as the paid packages except the amount of player, I can have running. For this style of game, I will be using the PUN 2 package to create ‘rooms’ for players to play in, these rooms will have a variety of options to use and modify. I will be designing the multiplayer to allow users to have three different options of enjoying my multiplayer experience:
-
-*	Create a private room and be provide with a server code to share
-*	Have a list of open rooms available to choose from
-*	Randomly be placed into an open room
-
-As multiplayer can be a complex thing to achieve, I will be working on have a max room size of 4 with plans to increase the size depending on progress on the game and networking in the game. Stay tuned for regular commits during development of this project :)
+## Gameplay
 
 ## Programs and Equipment :video_game::
 * Unity 2019.3.8f1
@@ -24,3 +17,12 @@ As multiplayer can be a complex thing to achieve, I will be working on have a ma
 	* Oculus PC Client
 	
 * Blender3D
+* Adobe Photoshop 2017
+
+## Download Instructions
+1. Download the ZIP file called “VRAssaultCourse”.
+1. Extract the files contents.
+1. There will be three folders in the unzipped VRAssaultCourse file.
+   1. Builds: This folder contains the build files of the game, click on the exe called ‘VR Wipeout’ to run the latest build.
+   2. Documentation: This folder contains all the documentation I have written for the project, including my final report.
+   3. Project: This file contains the Unity project I have been using to develop the game.
