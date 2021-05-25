@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    [Header("Transforms")]
     public GameObject FirstPosition;
     public GameObject SecondPosition;
 
+    [Header("Variables")]
+    public float Speed = 1;
+
     private Vector3 Pos1;
     private Vector3 Pos2;
-
-    public float Speed = 1;
 
     private void Start()
     {
@@ -18,7 +20,6 @@ public class MovingPlatform : MonoBehaviour
         Pos2 = SecondPosition.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.Lerp(Pos1, Pos2, Mathf.PingPong(Time.time * Speed, 1));

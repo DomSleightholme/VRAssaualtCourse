@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Death
+  - Platform
   layers:
   - Default
   - TransparentFX

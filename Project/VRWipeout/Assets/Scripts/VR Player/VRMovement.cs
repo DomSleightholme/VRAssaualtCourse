@@ -18,9 +18,8 @@ public class VRMovement : MonoBehaviour
 
     [Header("Ground Dectection")]
     public bool isGrounded;
-
-    [Header("Jumping")]
-    public float JumpForce;  
+    public float JumpForce;
+    public bool Crouching;
 
     [Header("XR")]
     public XRNode inputSource;
@@ -28,6 +27,8 @@ public class VRMovement : MonoBehaviour
     private Vector2 rotationAxis;
     public XRNode RotationInput;
     public bool Gamepad;
+
+    [Header("Haptic Feedback")]
     public List<XRController> Hands;
     public float HapticAmp;
     public float HapticDuration;
@@ -66,10 +67,7 @@ public class VRMovement : MonoBehaviour
         //Get Rotatation Input
         InputDevice rotationDevice = InputDevices.GetDeviceAtXRNode(RotationInput);
         rotationDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out rotationAxis);
-    }
 
-    private void FixedUpdate()
-    {
         var levelManager = FindObjectOfType<LevelManager>();
         if (levelManager.LevelRunning)
         {
@@ -79,6 +77,7 @@ public class VRMovement : MonoBehaviour
                 float x = Input.GetAxis("Horizontal");
                 float z = Input.GetAxis("Vertical");
 
+                //Movement
                 Quaternion headYaw = Quaternion.Euler(0, Rig.cameraGameObject.transform.eulerAngles.y, 0);
                 Vector3 direction = headYaw * new Vector3(x, RB.velocity.y, z) * Time.fixedDeltaTime * Speed;
                 RB.MovePosition(RB.position + direction);
@@ -97,10 +96,24 @@ public class VRMovement : MonoBehaviour
                 //Crouch
                 if (settings.RealCrouch == false)
                 {
-                    if (Input.GetButtonDown("Couch"))
+                    if (Input.GetButton("Crouch"))
                     {
-                        Crouch();
+                        Crouch(true);
                     }
+                    else
+                    {
+                        Crouch(false);
+                    }
+                }
+
+                //Sprinting
+                if (Input.GetButton("Sprint"))
+                {
+                    Sprinting(true);
+                }
+                else
+                {
+                    Sprinting(false);
                 }
 
                 //Pause
@@ -132,7 +145,11 @@ public class VRMovement : MonoBehaviour
                     crouch.TryGetFeatureValue(CommonUsages.primaryButton, out bool crouchPressed);
                     if (crouchPressed)
                     {
-                        Crouch();
+                        Crouch(true);
+                    }
+                    else
+                    {
+                        Crouch(false);
                     }
                 }
 
@@ -149,7 +166,7 @@ public class VRMovement : MonoBehaviour
                     pauseMenu.InputCheck();
                 }
 
-
+                //Sprinting
                 InputDevice sprint = InputDevices.GetDeviceAtXRNode(inputSource);
                 sprint.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool sprintPressed);
                 if (sprintPressed)
@@ -177,19 +194,32 @@ public class VRMovement : MonoBehaviour
         }
     }
 
-    public void Crouch()
+    public void Crouch(bool on)
     {
-        if (isGrounded)
+        if (on)
         {
-
+            if (isGrounded && transform.localScale.y > 0.75f)
+            {
+                transform.localScale -= new Vector3(0, 0.25f, 0);
+            }
+        }
+        else
+        {
+            if(transform.localScale.y < 1)
+            {
+                transform.localScale += new Vector3(0, 0.25f, 0);
+            }
         }
     }
-
+    
     void FollowHeadset()
     {
+        //Get the capsule component
         CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
         capsuleCollider.height = Rig.cameraInRigSpaceHeight;
         Cam.transform.localPosition = new Vector3(0, 1, 0);
+
+        //Adjust the capsule collider size to fit with the players headset
         Vector3 capsuleCenter = transform.InverseTransformPoint(Rig.cameraGameObject.transform.position);
         capsuleCollider.center = new Vector3(capsuleCenter.x, capsuleCollider.height / 2 + capsuleCollider.radius, capsuleCenter.z);
     }  
@@ -201,11 +231,21 @@ public class VRMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.transform.CompareTag("Platform"))
+        {
+            this.transform.parent = collision.transform;
+            isGrounded = true;
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.CompareTag("Ground"))
         {
+            isGrounded = false;
+        }
+        if (collision.transform.CompareTag("Platform"))
+        {
+            this.transform.parent = null;
             isGrounded = false;
         }
     }
@@ -230,22 +270,21 @@ public class VRMovement : MonoBehaviour
         {
             isSprinting = true;
             Speed = SprintSpeed;
-            CamEffects(SpeedEffect, Color.white, true);
+            CamEffects(SpeedEffect, true);
         }
         if (on == false)
         {
             isSprinting = false;
             Speed = OrignalValue;
-            CamEffects(SpeedEffect, Color.white, false);
+            CamEffects(SpeedEffect, false);
         }
     }
 
     //CameraEffects
-    public void CamEffects(GameObject Effect, Color CamColor, bool active)
+    public void CamEffects(GameObject Effect, bool active)
     {
         Effect.SetActive(active);
     }
-
     public void HapticInput(float amp, float duration)
     {
         for(int i = 0; i < Hands.Count; i++)

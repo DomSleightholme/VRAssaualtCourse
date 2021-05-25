@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Settings : MonoBehaviour
 {
@@ -22,6 +24,10 @@ public class Settings : MonoBehaviour
     public bool Gamepad;
     public Color OutlineColor;
 
+    private Volume volume;
+    private Vignette vignette;
+    private XRInteractorLineVisual XRInteractorLineVisual;
+
     private static Settings playerSettings;
     void Awake()
     {
@@ -39,7 +45,13 @@ public class Settings : MonoBehaviour
 
     private void Update()
     {
+        //Get and set data from Player Prefs
         getData();
+        setData();
+
+        //Get Settings to modify
+        volume = FindObjectOfType<Volume>();
+        XRInteractorLineVisual = FindObjectOfType<XRInteractorLineVisual>();
     }
 
     private void getData()
@@ -87,6 +99,10 @@ public class Settings : MonoBehaviour
         }
     }
 
+    private void setData()
+    {
+        QualitySettings.SetQualityLevel(GraphicsIndex);
+    }
     private void setColor()
     {
         //Outline Color
@@ -141,6 +157,25 @@ public class Settings : MonoBehaviour
         if (vignetteColor == "Black")
         {
             CameraVignette = Color.black;
+        }
+
+        //Setting Camera color
+        if(volume != null)
+        {
+            //Get the Vignette
+            if (volume.profile.TryGet(out Vignette vignette))
+                this.vignette = vignette;
+
+            //Setting Color
+            vignette.color.value = CameraVignette;
+        }
+
+        //Setting outline color
+        if(XRInteractorLineVisual != null)
+        {
+            Gradient gradient = new Gradient();
+            gradient.SetKeys(new GradientColorKey[] { new GradientColorKey(OutlineColor, 0.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1, 0.0f) });
+            XRInteractorLineVisual.validColorGradient = gradient;
         }
     }
 }

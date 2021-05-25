@@ -15,10 +15,17 @@ public class ScoreCounter : MonoBehaviour
     public bool Challenge2Complete;
     public bool Challenge3Complete;
 
-    private PlayerScores scores;
+    private int Level1Minutes;
+    private int Level2Minutes;
+    private int Level3Minutes;
+    private int Level4Minutes;
+
     private void Start()
     {
-        scores = FindObjectOfType<PlayerScores>();
+        Level1Minutes = PlayerPrefs.GetInt("Level1Minutes");
+        Level2Minutes = PlayerPrefs.GetInt("Level2Minutes");
+        Level3Minutes = PlayerPrefs.GetInt("Level3Minutes");
+        Level4Minutes = PlayerPrefs.GetInt("Level4Minutes");
     }
 
     public void LevelComplete()
@@ -32,25 +39,25 @@ public class ScoreCounter : MonoBehaviour
     {
         //Gets the scene index to check which level the player is on
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if(sceneIndex == 3 && FinalResultMinutes < scores.Level1_Minutes)
+        if(sceneIndex == 3 && FinalResultMinutes < Level1Minutes)
         {
-            scores.Level1_Minutes = FinalResultMinutes;
-            scores.Level1_Seconds = FinalResultSeconds;
+            PlayerPrefs.SetInt("Level1Minutes", FinalResultMinutes);
+            PlayerPrefs.SetInt("Level1Seconds", FinalResultSeconds);
         }
-        if (sceneIndex == 4 && FinalResultMinutes < scores.Level2_Minutes)
+        if (sceneIndex == 4 && FinalResultMinutes < Level2Minutes)
         {
-            scores.Level2_Minutes = FinalResultMinutes;
-            scores.Level2_Seconds = FinalResultSeconds;
+            PlayerPrefs.SetInt("Level2Minutes", FinalResultMinutes);
+            PlayerPrefs.SetInt("Level2Seconds", FinalResultSeconds);
         }
-        if (sceneIndex == 5 && FinalResultMinutes < scores.Level3_Minutes)
+        if (sceneIndex == 5 && FinalResultMinutes < Level3Minutes)
         {
-            scores.Level3_Minutes = FinalResultMinutes;
-            scores.Level3_Seconds = FinalResultSeconds;
+            PlayerPrefs.SetInt("Level3Minutes", FinalResultMinutes);
+            PlayerPrefs.SetInt("Level3Seconds", FinalResultSeconds);
         }
-        if (sceneIndex == 6 && FinalResultMinutes < scores.Level4_Minutes)
+        if (sceneIndex == 6 && FinalResultMinutes < Level4Minutes)
         {
-            scores.Level4_Minutes = FinalResultMinutes;
-            scores.Level4_Seconds = FinalResultSeconds;
+            PlayerPrefs.SetInt("Level4Minutes", FinalResultMinutes);
+            PlayerPrefs.SetInt("Level4Seconds", FinalResultSeconds);
         }
     }
 
@@ -61,57 +68,57 @@ public class ScoreCounter : MonoBehaviour
         //Level 1
         if(sceneIndex == 3 && Challenge1Complete)
         {
-            scores.Level1_Challenge1 = true;
+            PlayerPrefs.SetInt("Level1Challenge1", 1);
         }
         if (sceneIndex == 3 && Challenge2Complete)
         {
-            scores.Level1_Challenge2 = true;
+            PlayerPrefs.SetInt("Level1Challenge2", 1);
         }
         if (sceneIndex == 3 && Challenge3Complete)
         {
-            scores.Level1_Challenge3 = true;
+            PlayerPrefs.SetInt("Level1Challenge3", 1);
         }
 
         //Level 2
         if (sceneIndex == 4 && Challenge1Complete)
         {
-            scores.Level2_Challenge1 = true;
+            PlayerPrefs.SetInt("Level2Challenge1", 1);
         }
         if (sceneIndex == 4 && Challenge2Complete)
         {
-            scores.Level2_Challenge2 = true;
+            PlayerPrefs.SetInt("Level2Challenge2", 1);
         }
         if (sceneIndex == 4 && Challenge3Complete)
         {
-            scores.Level2_Challenge3 = true;
+            PlayerPrefs.SetInt("Level2Challenge3", 1);
         }
 
         //Level 3
         if (sceneIndex == 5 && Challenge1Complete)
         {
-            scores.Level3_Challenge1 = true;
+            PlayerPrefs.SetInt("Level3Challenge1", 1);
         }
         if (sceneIndex == 5 && Challenge2Complete)
         {
-            scores.Level3_Challenge2 = true;
+            PlayerPrefs.SetInt("Level3Challenge2", 1);
         }
         if (sceneIndex == 5 && Challenge3Complete)
         {
-            scores.Level3_Challenge3 = true;
+            PlayerPrefs.SetInt("Level3Challenge3", 1);
         }
 
         //Level 4
         if (sceneIndex == 6 && Challenge1Complete)
         {
-            scores.Level4_Challenge1 = true;
+            PlayerPrefs.SetInt("Level4Challenge1", 1);
         }
         if (sceneIndex == 6 && Challenge2Complete)
         {
-            scores.Level4_Challenge2 = true;
+            PlayerPrefs.SetInt("Level4Challenge2", 1);
         }
         if (sceneIndex == 6 && Challenge3Complete)
         {
-            scores.Level4_Challenge3 = true;
+            PlayerPrefs.SetInt("Level4Challenge3", 1);
         }
     }
 }
