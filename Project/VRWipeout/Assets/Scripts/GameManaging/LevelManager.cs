@@ -19,8 +19,6 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
-        LevelTimer timer = FindObjectOfType<LevelTimer>();
-        timer.timeRunning = true;
         LevelRunning = true;
     }
 
@@ -34,5 +32,15 @@ public class LevelManager : MonoBehaviour
     {
         var scores = FindObjectOfType<ScoreCounter>();
         scores.LevelComplete();
+    }
+
+    public void endGame()
+    {
+        Application.Quit();
+    }
+
+    public void goHome()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

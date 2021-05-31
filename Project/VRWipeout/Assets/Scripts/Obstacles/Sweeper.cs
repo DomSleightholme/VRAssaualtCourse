@@ -21,7 +21,11 @@ public class Sweeper : MonoBehaviour
 
     private void Update()
     {
-        Rotate();
+        var levelManager = FindObjectOfType<LevelManager>();
+        if (levelManager.LevelRunning)
+        {
+            Rotate();
+        }
 
         if (canIncreaseSpeed)
         {

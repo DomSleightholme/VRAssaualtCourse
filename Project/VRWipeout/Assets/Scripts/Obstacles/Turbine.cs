@@ -16,13 +16,14 @@ public class Turbine : MonoBehaviour
     private Ray ray3;
     private Ray ray4;
     public float LineDistance;
-    [Range(100.0f, 300.0f)]
+    [Range(100.0f, 400.0f)]
     public float DistanceMultipler;
     public Color LineColor;
 
     [Header("Transforms")]
     public Transform RaycastOrigin;
-    public Transform Player;
+    private GameObject Player;
+    public Rigidbody PlayersRB;
 
     [Header("Private Variables")]
     private Vector3 forward;
@@ -33,7 +34,7 @@ public class Turbine : MonoBehaviour
 
     private void Start()
     {
-        
+        Player = GameObject.Find("VR Rig");
     }
     public void FixedUpdate()
     {
@@ -78,6 +79,7 @@ public class Turbine : MonoBehaviour
             if (hit1.collider.CompareTag("Player"))
             {
                 DetectDistance();
+                Debug.DrawRay(position1, forward, Color.green);
             }
         }
         else if (Physics.Raycast(ray2, out RaycastHit hit2, LineDistance))
@@ -85,6 +87,7 @@ public class Turbine : MonoBehaviour
             if (hit2.collider.CompareTag("Player"))
             {
                 DetectDistance();
+                Debug.DrawRay(position1, forward, Color.green);
             }
         }
         else if (Physics.Raycast(ray3, out RaycastHit hit3, LineDistance))
@@ -92,6 +95,7 @@ public class Turbine : MonoBehaviour
             if (hit3.collider.CompareTag("Player"))
             {
                 DetectDistance();
+                Debug.DrawRay(position1, forward, Color.green);
             }
         }
         else if (Physics.Raycast(ray4, out RaycastHit hit4, LineDistance))
@@ -99,13 +103,15 @@ public class Turbine : MonoBehaviour
             if (hit4.collider.CompareTag("Player"))
             {
                 DetectDistance();
+                Debug.DrawRay(position1, forward, Color.green);
             }
         }
     }
 
     void DetectDistance()
     {
-        Vector3 knock = Player.position - transform.position;
-
+        Debug.Log("asd");
+        Vector3 knock = Player.transform.position - transform.position;
+        PlayersRB.velocity = Vector3.left * Force;
     }
 }

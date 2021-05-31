@@ -261,7 +261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4086539596323058264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9182339163179322072}
@@ -295,7 +295,7 @@ Transform:
   m_GameObject: {fileID: 5275229231761127627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.398218, y: 2.0189817, z: 13.030836}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.07985549, y: 0.39927742, z: 0.07985549}
   m_Children:
   - {fileID: 6958755955960242075}
   - {fileID: 1281505953275676016}
@@ -324,7 +324,7 @@ MonoBehaviour:
   DistanceMultipler: 300
   LineColor: {r: 1, g: 0, b: 0, a: 1}
   RaycastOrigin: {fileID: 4086539596323058265}
-  Player: {fileID: 0}
+  PlayersRB: {fileID: 0}
 --- !u!65 &5275229231761127630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -347,11 +347,12 @@ AudioSource:
   m_GameObject: {fileID: 5275229231761127627}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7d52e153d609f6c449962525fe06ef93, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 381a2224c8b156e469653eea512e36c9,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 2562069fe9449be4e9d2b863e5429ecf, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.48
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -917,6 +918,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433149453325851603, guid: 80af825fe2050a04585345bc4773a545,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.31515
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433149453325851603, guid: 80af825fe2050a04585345bc4773a545,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31515
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433149453325851603, guid: 80af825fe2050a04585345bc4773a545,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.31515
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80af825fe2050a04585345bc4773a545, type: 3}

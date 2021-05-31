@@ -58,7 +58,7 @@ public class MultiplayerMenuController : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.CreateRoom(CreateGameInput.text, new Photon.Realtime.RoomOptions() { MaxPlayers = 8 }, null);
+            PhotonNetwork.CreateRoom(CreateGameInput.text, new Photon.Realtime.RoomOptions() { MaxPlayers = 4 }, null);
 
             mulitplayerManager manager = FindObjectOfType<mulitplayerManager>();
             manager.Roomcode = JoinGameInput.text;
@@ -69,8 +69,10 @@ public class MultiplayerMenuController : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            Photon.Realtime.RoomOptions roomOptions = new Photon.Realtime.RoomOptions();
-            roomOptions.MaxPlayers = 8;
+            Photon.Realtime.RoomOptions roomOptions = new Photon.Realtime.RoomOptions
+            {
+                MaxPlayers = 4
+            };
             PhotonNetwork.JoinOrCreateRoom(JoinGameInput.text, roomOptions, default);
 
             mulitplayerManager manager = FindObjectOfType<mulitplayerManager>();
@@ -83,7 +85,7 @@ public class MultiplayerMenuController : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.LoadLevel("Level");
+            PhotonNetwork.LoadLevel("Multiplayer");
         }
     }
 }

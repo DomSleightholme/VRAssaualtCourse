@@ -21,11 +21,13 @@ public class Climber : MonoBehaviour
         if (climbingHand)
         {
             player.enabled = false;
+            RB.useGravity = false;
             Climb();
         }
         else
         {
             player.enabled = true;
+            RB.useGravity = true;
         }
     }
 

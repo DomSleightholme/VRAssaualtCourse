@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -67,7 +68,10 @@ public class VRMovement : MonoBehaviour
         //Get Rotatation Input
         InputDevice rotationDevice = InputDevices.GetDeviceAtXRNode(RotationInput);
         rotationDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out rotationAxis);
+    }
 
+    private void FixedUpdate()
+    {
         var levelManager = FindObjectOfType<LevelManager>();
         if (levelManager.LevelRunning)
         {
@@ -164,6 +168,9 @@ public class VRMovement : MonoBehaviour
                 {
                     var pauseMenu = FindObjectOfType<PauseMenu>();
                     pauseMenu.InputCheck();
+
+                    var guiMnager = FindObjectOfType<GUIManager>();
+                    guiMnager.onGUIOpen();
                 }
 
                 //Sprinting
@@ -185,9 +192,10 @@ public class VRMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            RB.velocity += JumpForce * Vector3.up * Time.deltaTime;
+            RB.velocity += JumpForce * Vector3.up;
+            isGrounded = false;
 
-            if(Gamepad == false)
+            if (Gamepad == false)
             {
                 HapticInput(HapticAmp, HapticDuration);
             }
@@ -231,21 +239,16 @@ public class VRMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.transform.CompareTag("Platform"))
+        if (collision.transform.CompareTag("BouncingBall"))
         {
-            this.transform.parent = collision.transform;
-            isGrounded = true;
+            RB.velocity += JumpForce * 15 * Vector3.up;
+            isGrounded = false;
         }
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.CompareTag("Ground"))
         {
-            isGrounded = false;
-        }
-        if (collision.transform.CompareTag("Platform"))
-        {
-            this.transform.parent = null;
             isGrounded = false;
         }
     }

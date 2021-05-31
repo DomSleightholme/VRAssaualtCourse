@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2276895649329148888}
   - component: {fileID: 2276895649329148871}
   - component: {fileID: 2276895649329148889}
+  - component: {fileID: 1545888404}
   m_Layer: 0
   m_Name: Pendulum
   m_TagString: Untagged
@@ -44,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 6.89418, z: 4.3190575}
-  m_Center: {x: 0, y: -2.94709, z: 0.028039932}
+  m_Size: {x: 2.3781445, y: 7.284472, z: 4.3190575}
+  m_Center: {x: 0.01968133, y: -3.1422362, z: 0.028039837}
 --- !u!54 &2276895649329148889
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54,14 +55,27 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2276895649329148870}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
+  m_Constraints: 126
+  m_CollisionDetection: 3
+--- !u!114 &1545888404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276895649329148870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239697addaff2c840bf1a1bf9deb0198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 1
 --- !u!1001 &1136702897565829240
 PrefabInstance:
   m_ObjectHideFlags: 0

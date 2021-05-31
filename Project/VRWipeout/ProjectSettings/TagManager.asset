@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Death
   - Platform
+  - Obstacle
+  - BouncingBall
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Ground
   - AvoidRender
   - Interactable
-  - NoLight
+  - Body
   - 
   - 
   - 

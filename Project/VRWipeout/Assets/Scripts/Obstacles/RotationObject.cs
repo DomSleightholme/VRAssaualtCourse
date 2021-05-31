@@ -19,13 +19,13 @@ public class RotationObject : MonoBehaviour
         {
             case RotationAxis.Y:
             {
-                    Quaternion deltaRotation = Quaternion.Euler(RotationSpeed * Time.deltaTime, 0, 0);
+                    Quaternion deltaRotation = Quaternion.Euler(0, RotationSpeed * Time.deltaTime, 0);
                     RB.MoveRotation(RB.rotation * deltaRotation);
                     break;
             }
             case RotationAxis.X:
             {
-                    Quaternion deltaRotation = Quaternion.Euler(0, RotationSpeed * Time.deltaTime, 0);
+                    Quaternion deltaRotation = Quaternion.Euler(RotationSpeed * Time.deltaTime, 0, 0);
                     RB.MoveRotation(RB.rotation * deltaRotation);
                     break;
             }

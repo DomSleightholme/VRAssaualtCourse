@@ -14,8 +14,8 @@ public class SettingsGUI : MonoBehaviour
     private string CameraVignetteColor;
 
     [Header("Interface")]
-    public int GUIMenuDistance;
-    public int GUIMenuHeight;
+    public float GUIMenuDistance;
+    public float GUIMenuHeight;
     public Slider GUIMenuDistanceSlider;
     public Slider GUIMenuHeightSlider;
     public TMP_Text GUIMenuDistanceText;
@@ -49,6 +49,8 @@ public class SettingsGUI : MonoBehaviour
 
         SFXSlider.value = sfx;
         MusicSlider.value = music;
+
+        getData();
     }
 
     private void Update()
@@ -59,7 +61,6 @@ public class SettingsGUI : MonoBehaviour
         GUIMenuDistanceText.text = GUIMenuDistance.ToString();
         GUIMenuHeightText.text = GUIMenuHeight.ToString();
 
-        getData();
         saveData();
     }
 
@@ -68,8 +69,8 @@ public class SettingsGUI : MonoBehaviour
     {
         TurnAngleValue = PlayerPrefs.GetFloat("TurnAngleValue");
 
-        GUIMenuDistance = PlayerPrefs.GetInt("GUIMenuDistance");
-        GUIMenuHeight = PlayerPrefs.GetInt("GUIMenuHeight");
+        GUIMenuDistance = PlayerPrefs.GetFloat("GUIMenuDistance");
+        GUIMenuHeight = PlayerPrefs.GetFloat("GUIMenuHeight");
         GraphicsIndex = PlayerPrefs.GetInt("GraphicsIndex");
 
         CameraVignetteColor = PlayerPrefs.GetString("CameraVignetteColor");
@@ -114,8 +115,8 @@ public class SettingsGUI : MonoBehaviour
         PlayerPrefs.SetFloat("TurnAngleValue", TurnAngleValue);
 
         //Int
-        PlayerPrefs.SetInt("GUIMenuDistance", GUIMenuDistance);
-        PlayerPrefs.SetInt("GUIMenuHeight", GUIMenuHeight);
+        PlayerPrefs.SetFloat("GUIMenuDistance", GUIMenuDistance);
+        PlayerPrefs.SetFloat("GUIMenuHeight", GUIMenuHeight);
         PlayerPrefs.SetInt("GraphicsIndex", GraphicsIndex);
 
         //String

@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: f2a645252eaa7504e8b10140ab2045b9
-  - enabled: 1
-    path: Assets/Scenes/Menus/LoadingScreen.unity
-    guid: 5704bd7157887b04e9355ad1bd368a06
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorial.unity
     guid: 6974984a14e72274db6b3c96a8f4a9ac
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level 4.unity
     guid: d62a9242177c32e4aa122f8087bd517d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Multiplayer.unity
+    guid: 15ace5f3c8cb6bd4d87a52cc8e0b8197
   m_configObjects: {}

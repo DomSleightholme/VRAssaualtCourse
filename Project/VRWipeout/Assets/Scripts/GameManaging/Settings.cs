@@ -12,8 +12,8 @@ public class Settings : MonoBehaviour
     public Color CameraVignette;
 
     [Header("Interface")]
-    public int GUIMenuDistance;
-    public int GUIMenuHeight;
+    public float GUIMenuDistance;
+    public float GUIMenuHeight;
 
     [Header("Graphics")]
     public bool PostProcessing;
@@ -26,7 +26,6 @@ public class Settings : MonoBehaviour
 
     private Volume volume;
     private Vignette vignette;
-    private XRInteractorLineVisual XRInteractorLineVisual;
 
     private static Settings playerSettings;
     void Awake()
@@ -51,7 +50,6 @@ public class Settings : MonoBehaviour
 
         //Get Settings to modify
         volume = FindObjectOfType<Volume>();
-        XRInteractorLineVisual = FindObjectOfType<XRInteractorLineVisual>();
     }
 
     private void getData()
@@ -171,11 +169,21 @@ public class Settings : MonoBehaviour
         }
 
         //Setting outline color
-        if(XRInteractorLineVisual != null)
+        var xrLineVisual = FindObjectsOfType<XRInteractorLineVisual>();
+        if(xrLineVisual != null)
         {
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(new GradientColorKey[] { new GradientColorKey(OutlineColor, 0.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1, 0.0f) });
-            XRInteractorLineVisual.validColorGradient = gradient;
+           for(int i = 0; i < xrLineVisual.Length; i++)
+            {
+                Gradient gradient = new Gradient();
+                gradient.SetKeys(new GradientColorKey[] { new GradientColorKey(OutlineColor, 0.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1, 0.0f) });
+                xrLineVisual[i].validColorGradient = gradient;
+            }
+        }
+
+        var outline = FindObjectOfType<Outline>();
+        if(outline != null)
+        {
+            outline.outlineColor = OutlineColor;
         }
     }
 }

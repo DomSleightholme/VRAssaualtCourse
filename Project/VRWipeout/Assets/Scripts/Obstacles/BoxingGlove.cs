@@ -7,10 +7,10 @@ public class BoxingGlove : MonoBehaviour
     [Header("Transforms")]
     public Transform PunchGlove;
     public Animator animator;
-
-    [Header("Variables")]
-    public float OrignalPosition;
-    public float AttackPosition;
+    public void Start()
+    {
+        InvokeRepeating("Attack", 5, 5);
+    }
 
     public void Attack()
     {

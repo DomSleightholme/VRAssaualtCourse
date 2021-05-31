@@ -18,13 +18,24 @@ public class LevelTimer : MonoBehaviour
     string minUI;
     string secUI;
 
-    private void Start()
+    private LevelManager levelManager;
+
+    private void Awake()
     {
-        timeRunning = false;
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void Update()
     {
+        if (levelManager.LevelRunning)
+        {
+            timeRunning = true;
+        }
+        else
+        {
+            timeRunning = false;
+        }
+
         if(timeRunning == true)
         {
             timer += Time.deltaTime;

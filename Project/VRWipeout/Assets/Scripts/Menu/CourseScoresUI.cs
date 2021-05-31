@@ -66,11 +66,6 @@ public class CourseScoresUI : MonoBehaviour
     private int Level4Challenge2;
     private int Level4Challenge3;
 
-    private void Start()
-    {
-        getData();
-    }
-
     void getData()
     {
         //Get the times of each level:
@@ -88,21 +83,23 @@ public class CourseScoresUI : MonoBehaviour
         Level1Challenge2 = PlayerPrefs.GetInt("Level1Challenge2");
         Level1Challenge3 = PlayerPrefs.GetInt("Level1Challenge3");
 
-        Level2Challenge1 = PlayerPrefs.GetInt("Level1Challenge1");
-        Level2Challenge2 = PlayerPrefs.GetInt("Level1Challenge2");
-        Level2Challenge3 = PlayerPrefs.GetInt("Level1Challenge3");
+        Level2Challenge1 = PlayerPrefs.GetInt("Level2Challenge1");
+        Level2Challenge2 = PlayerPrefs.GetInt("Level2Challenge2");
+        Level2Challenge3 = PlayerPrefs.GetInt("Level2Challenge3");
 
-        Level3Challenge1 = PlayerPrefs.GetInt("Level1Challenge1");
-        Level3Challenge2 = PlayerPrefs.GetInt("Level1Challenge2");
-        Level3Challenge3 = PlayerPrefs.GetInt("Level1Challenge3");
+        Level3Challenge1 = PlayerPrefs.GetInt("Level3Challenge1");
+        Level3Challenge2 = PlayerPrefs.GetInt("Level3Challenge2");
+        Level3Challenge3 = PlayerPrefs.GetInt("Level3Challenge3");
 
-        Level4Challenge1 = PlayerPrefs.GetInt("Level1Challenge1");
-        Level4Challenge2 = PlayerPrefs.GetInt("Level1Challenge2");
-        Level4Challenge3 = PlayerPrefs.GetInt("Level1Challenge3");
+        Level4Challenge1 = PlayerPrefs.GetInt("Level4Challenge1");
+        Level4Challenge2 = PlayerPrefs.GetInt("Level4Challenge2");
+        Level4Challenge3 = PlayerPrefs.GetInt("Level4Challenge3");
     }
 
     private void Update()
     {
+        getData();
+
         Level1Stats();
         Level2Stats();
         Level3Stats();
@@ -137,13 +134,25 @@ public class CourseScoresUI : MonoBehaviour
         {
             Level1_Challenge1.SetActive(true);
         }
+        else
+        {
+            Level1_Challenge1.SetActive(false);
+        }
         if (Level1Challenge2 == 1)
         {
             Level1_Challenge2.SetActive(true);
         }
+        else
+        {
+            Level1_Challenge2.SetActive(false);
+        }
         if (Level1Challenge3 == 1)
         {
             Level1_Challenge3.SetActive(true);
+        }
+        else
+        {
+            Level1_Challenge3.SetActive(false);
         }
     }
 
@@ -175,13 +184,25 @@ public class CourseScoresUI : MonoBehaviour
         {
             Level2_Challenge1.SetActive(true);
         }
+        else
+        {
+            Level2_Challenge1.SetActive(false);
+        }
         if (Level2Challenge2 == 1)
         {
             Level2_Challenge2.SetActive(true);
         }
+        else
+        {
+            Level2_Challenge2.SetActive(false);
+        }
         if (Level2Challenge3 == 1)
         {
             Level2_Challenge3.SetActive(true);
+        }
+        else
+        {
+            Level2_Challenge3.SetActive(false);
         }
     }
 
@@ -213,13 +234,25 @@ public class CourseScoresUI : MonoBehaviour
         {
             Level3_Challenge1.SetActive(true);
         }
+        else
+        {
+            Level3_Challenge1.SetActive(false);
+        }
         if (Level3Challenge2 == 1)
         {
             Level3_Challenge2.SetActive(true);
         }
+        else
+        {
+            Level3_Challenge2.SetActive(false);
+        }
         if (Level3Challenge3 == 1)
         {
             Level3_Challenge3.SetActive(true);
+        }
+        else
+        {
+            Level3_Challenge3.SetActive(false);
         }
     }
 
@@ -251,13 +284,25 @@ public class CourseScoresUI : MonoBehaviour
         {
             Level4_Challenge1.SetActive(true);
         }
+        else
+        {
+            Level4_Challenge1.SetActive(false);
+        }
         if (Level4Challenge2 == 1)
         {
             Level4_Challenge2.SetActive(true);
         }
+        else
+        {
+            Level4_Challenge2.SetActive(false);
+        }
         if (Level4Challenge3 == 1)
         {
             Level4_Challenge3.SetActive(true);
+        }
+        else
+        {
+            Level4_Challenge3.SetActive(false);
         }
     }
 }
