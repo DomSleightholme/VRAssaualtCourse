@@ -41,11 +41,14 @@ public class Settings : MonoBehaviour
             Destroy(this);
         }
     }
+    private void Start()
+    {
+        getData();
+    }
 
     private void Update()
     {
         //Get and set data from Player Prefs
-        getData();
         setData();
 
         //Get Settings to modify

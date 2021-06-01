@@ -26,40 +26,94 @@ public class EndScreen : MonoBehaviour
         {
             var levelStats = FindObjectOfType<LevelOne>();
 
-            Minutes.text = levelStats.Minutes.ToString();
-            Seconds.text = levelStats.Seconds.ToString();
+            if (levelStats.Seconds < 10)
+            {
+                Seconds.text = "0" + levelStats.Seconds.ToString();
+            }
+            else
+            {
+                Seconds.text = levelStats.Seconds.ToString();
+            }
+
+            if (levelStats.Minutes < 10)
+            {
+                Minutes.text = "0" + levelStats.Minutes.ToString();
+            }
+            else
+            {
+                Minutes.text = levelStats.Minutes.ToString();
+            }
 
             if (levelStats.Challenge1Compeleted)
             {
                 Challenge1.SetActive(true);
             }
+            else
+            {
+                Challenge1.SetActive(false);
+            }
             if (levelStats.Challenge2Compeleted)
             {
                 Challenge2.SetActive(true);
             }
+            else
+            {
+                Challenge2.SetActive(false);
+            }
             if (levelStats.Challenge3Compeleted)
             {
                 Challenge3.SetActive(true);
+            }
+            else
+            {
+                Challenge3.SetActive(false);
             }
         }
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             var levelStats = FindObjectOfType<LevelTwo>();
 
-            Minutes.text = levelStats.Minutes.ToString();
-            Seconds.text = levelStats.Seconds.ToString();
+            if (levelStats.Seconds < 10)
+            {
+                Seconds.text = "0" + levelStats.Seconds.ToString();
+            }
+            else
+            {
+                Seconds.text = levelStats.Seconds.ToString();
+            }
+
+            if (levelStats.Minutes < 10)
+            {
+                Minutes.text = "0" + levelStats.Minutes.ToString();
+            }
+            else
+            {
+                Minutes.text = levelStats.Minutes.ToString();
+            }
 
             if (levelStats.Challenge1Compeleted)
             {
                 Challenge1.SetActive(true);
             }
+            else
+            {
+                Challenge1.SetActive(false);
+            }
             if (levelStats.Challenge2Compeleted)
             {
                 Challenge2.SetActive(true);
             }
+            else
+            {
+                Challenge2.SetActive(false);
+            }
             if (levelStats.Challenge3Compeleted)
             {
                 Challenge3.SetActive(true);
+            }
+            else
+            {
+                Challenge3.SetActive(false);
             }
         }
         if (SceneManager.GetActiveScene().buildIndex == 4)
@@ -111,22 +165,49 @@ public class EndScreen : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().buildIndex == 5)
         {
-            var levelStats = FindObjectOfType<LevelFour>();
+            var levelStats = FindObjectOfType<LevelThree>();
 
-            Minutes.text = levelStats.Minutes.ToString();
-            Seconds.text = levelStats.Seconds.ToString();
+            if (levelStats.Seconds < 10)
+            {
+                Seconds.text = "0" + levelStats.Seconds.ToString();
+            }
+            else
+            {
+                Seconds.text = levelStats.Seconds.ToString();
+            }
+
+            if (levelStats.Minutes < 10)
+            {
+                Minutes.text = "0" + levelStats.Minutes.ToString();
+            }
+            else
+            {
+                Minutes.text = levelStats.Minutes.ToString();
+            }
 
             if (levelStats.Challenge1Compeleted)
             {
                 Challenge1.SetActive(true);
             }
+            else
+            {
+                Challenge1.SetActive(false);
+            }
             if (levelStats.Challenge2Compeleted)
             {
                 Challenge2.SetActive(true);
             }
+            else
+            {
+                Challenge2.SetActive(false);
+            }
             if (levelStats.Challenge3Compeleted)
             {
                 Challenge3.SetActive(true);
+            }
+            else
+            {
+                Challenge3.SetActive(false);
             }
         }
     }

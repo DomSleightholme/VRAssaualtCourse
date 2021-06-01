@@ -61,7 +61,7 @@ public class MultiplayerMenuController : MonoBehaviourPunCallbacks
             PhotonNetwork.CreateRoom(CreateGameInput.text, new Photon.Realtime.RoomOptions() { MaxPlayers = 4 }, null);
 
             mulitplayerManager manager = FindObjectOfType<mulitplayerManager>();
-            manager.Roomcode = JoinGameInput.text;
+            manager.Roomcode = CreateGameInput.text;
             manager.Username = UsernameInput.text;
         }
     }

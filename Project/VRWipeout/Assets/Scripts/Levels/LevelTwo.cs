@@ -13,6 +13,12 @@ public class LevelTwo : MonoBehaviour
 
     private void Update()
     {
+        //Find time
+        var levelTimer = FindObjectOfType<LevelTimer>();
+        Minutes = levelTimer.minutes;
+        Seconds = levelTimer.seconds;
+
+        //Check challenges
         CheckChallenges();
     }
 
@@ -22,13 +28,25 @@ public class LevelTwo : MonoBehaviour
         {
             Challenge1Compeleted = true;
         }
+        else
+        {
+            Challenge1Compeleted = false;
+        }
         if (Minutes == 3 || Minutes > 3)
         {
             Challenge2Compeleted = true;
         }
+        else
+        {
+            Challenge2Compeleted = false;
+        }
         if (Minutes == 6 || Minutes > 6)
         {
             Challenge3Compeleted = true;
+        }
+        else
+        {
+            Challenge3Compeleted = false;
         }
     }
 }

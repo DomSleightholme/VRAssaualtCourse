@@ -32,13 +32,26 @@ public class LevelOne : MonoBehaviour
                 Challenge1Compeleted = true;
             }        
         }
+        else
+        {
+            Challenge1Compeleted = false;
+        }
         if (Minutes < 1)
         {
             Challenge2Compeleted = true;
+        }
+        else
+        {
+            Challenge2Compeleted = false;
         }
         if(RespawnAmount < 1)
         {
             Challenge3Compeleted = true;
         }
+        else
+        {
+            Challenge3Compeleted = false;
+        }
+        
     }
 }

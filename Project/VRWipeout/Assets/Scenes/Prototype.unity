@@ -418,7 +418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceLeft: 0
   distanceOverall: 0
-  Player: {fileID: 1526163993}
+  CheckpointObject: {fileID: 0}
+  DistanceLeftGUI: {fileID: 0}
 --- !u!65 &239553887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1304,6 +1305,7 @@ GameObject:
   - component: {fileID: 908443736}
   - component: {fileID: 908443735}
   - component: {fileID: 908443734}
+  - component: {fileID: 908443738}
   m_Layer: 8
   m_Name: Ground
   m_TagString: Ground
@@ -1385,6 +1387,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &908443738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908443733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9455b56cc0ec146a8c8a46899ee5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDelay: 0
+  LevelRunning: 1
+  LevelCountdown: {fileID: 806296552}
 --- !u!20 &966008476 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2693479024338272124, guid: a0abd3e6dbd446d4e84568657ae750a6,
@@ -3671,12 +3688,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f114088f8295a94eb33cd21d939af48, type: 3}
---- !u!1 &1526163993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2693479023646119912, guid: a0abd3e6dbd446d4e84568657ae750a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2693479024286760433}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2693479024286760433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3748,6 +3759,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693479023646119917, guid: a0abd3e6dbd446d4e84568657ae750a6,
+        type: 3}
+      propertyPath: JumpForce
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2693479024046605206, guid: a0abd3e6dbd446d4e84568657ae750a6,
         type: 3}

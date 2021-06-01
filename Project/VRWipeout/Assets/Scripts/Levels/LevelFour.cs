@@ -15,6 +15,12 @@ public class LevelFour : MonoBehaviour
 
     private void Update()
     {
+        //Find time
+        var levelTimer = FindObjectOfType<LevelTimer>();
+        Minutes = levelTimer.minutes;
+        Seconds = levelTimer.seconds;
+
+        //Check challenges
         CheckChallenges();
     }
 

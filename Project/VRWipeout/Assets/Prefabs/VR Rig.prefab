@@ -2816,10 +2816,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   RotationSpeed: 50
-  SprintSpeed: 0
-  SpeedEffect: {fileID: 7971114740732689252, guid: 90f1a1d8dde10584f9392c69d5dcfcb8,
-    type: 3}
-  isSprinting: 0
   isGrounded: 0
   JumpForce: 40
   Crouching: 0

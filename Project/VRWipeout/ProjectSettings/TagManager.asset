@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Obstacle
   - BouncingBall
+  - CompleteLevel
   layers:
   - Default
   - TransparentFX

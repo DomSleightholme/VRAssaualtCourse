@@ -75,8 +75,8 @@ public class CourseScoresUI : MonoBehaviour
         Level2_Seconds = PlayerPrefs.GetInt("Level2Seconds");
         Level3_Minutes = PlayerPrefs.GetInt("Level3Minutes");
         Level3_Seconds = PlayerPrefs.GetInt("Level3Seconds"); 
-        Level4_Seconds = PlayerPrefs.GetInt("Level4Minutes");
-        Level4_Minutes = PlayerPrefs.GetInt("Level4Seconds");
+        Level4_Seconds = PlayerPrefs.GetInt("Level4Seconds");
+        Level4_Minutes = PlayerPrefs.GetInt("Level4Minutes");
 
         //Get challenges
         Level1Challenge1 = PlayerPrefs.GetInt("Level1Challenge1");

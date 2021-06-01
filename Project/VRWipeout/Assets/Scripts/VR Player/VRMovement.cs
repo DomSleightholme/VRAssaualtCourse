@@ -12,11 +12,6 @@ public class VRMovement : MonoBehaviour
     public float RotationSpeed;
     private float OrignalValue;
 
-    [Header("Sprinting")]
-    public float SprintSpeed;
-    public GameObject SpeedEffect;
-    public bool isSprinting;
-
     [Header("Ground Dectection")]
     public bool isGrounded;
     public float JumpForce;
@@ -49,7 +44,7 @@ public class VRMovement : MonoBehaviour
         Rig = GetComponent<XRRig>();
         RB = GetComponent<Rigidbody>();
 
-        jumpInput = inputSource;
+        jumpInput = RotationInput;
         pauseInput = inputSource;
 
         OrignalValue = Speed;
@@ -110,16 +105,6 @@ public class VRMovement : MonoBehaviour
                     }
                 }
 
-                //Sprinting
-                if (Input.GetButton("Sprint"))
-                {
-                    Sprinting(true);
-                }
-                else
-                {
-                    Sprinting(false);
-                }
-
                 //Pause
                 if (Input.GetButtonDown("Pause"))
                 {
@@ -168,21 +153,6 @@ public class VRMovement : MonoBehaviour
                 {
                     var pauseMenu = FindObjectOfType<PauseMenu>();
                     pauseMenu.InputCheck();
-
-                    var guiMnager = FindObjectOfType<GUIManager>();
-                    guiMnager.onGUIOpen();
-                }
-
-                //Sprinting
-                InputDevice sprint = InputDevices.GetDeviceAtXRNode(inputSource);
-                sprint.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool sprintPressed);
-                if (sprintPressed)
-                {
-                    Sprinting(true);
-                }
-                else
-                {
-                    Sprinting(false);
                 }
             }
         }
@@ -230,7 +200,7 @@ public class VRMovement : MonoBehaviour
         //Adjust the capsule collider size to fit with the players headset
         Vector3 capsuleCenter = transform.InverseTransformPoint(Rig.cameraGameObject.transform.position);
         capsuleCollider.center = new Vector3(capsuleCenter.x, capsuleCollider.height / 2 + capsuleCollider.radius, capsuleCenter.z);
-    }  
+    }
 
     //GroundDetection
     private void OnCollisionEnter(Collision collision)
@@ -241,7 +211,7 @@ public class VRMovement : MonoBehaviour
         }
         if (collision.transform.CompareTag("BouncingBall"))
         {
-            RB.velocity += JumpForce * 15 * Vector3.up;
+            RB.velocity += JumpForce * Vector3.up;
             isGrounded = false;
         }
     }
@@ -266,28 +236,6 @@ public class VRMovement : MonoBehaviour
         }
     }
 
-    //Camera Effects
-    public void Sprinting(bool on)
-    {
-        if (on == true)
-        {
-            isSprinting = true;
-            Speed = SprintSpeed;
-            CamEffects(SpeedEffect, true);
-        }
-        if (on == false)
-        {
-            isSprinting = false;
-            Speed = OrignalValue;
-            CamEffects(SpeedEffect, false);
-        }
-    }
-
-    //CameraEffects
-    public void CamEffects(GameObject Effect, bool active)
-    {
-        Effect.SetActive(active);
-    }
     public void HapticInput(float amp, float duration)
     {
         for(int i = 0; i < Hands.Count; i++)

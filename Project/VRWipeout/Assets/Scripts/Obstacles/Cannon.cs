@@ -18,10 +18,7 @@ public class Cannon : MonoBehaviour
 
     private void Start()
     {
-        if (isAutomatic)
-        {
-            InvokeRepeating("FireCannon", 1.0f, FireDelay);
-        }
+        InvokeRepeating("FireCannon", 1.0f, FireDelay);
     }
 
     public void Update()
